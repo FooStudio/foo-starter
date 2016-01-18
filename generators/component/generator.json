@@ -1,0 +1,14 @@
+{
+    "files": [
+        {
+            "from": "component.js.hbs",
+            "to": "src/app/components/{{name}}.js"
+        }
+    ],
+    "dependencies": [
+        {
+            "name": "component-style",
+            "params": "{{name}}"
+        }
+    ]
+}

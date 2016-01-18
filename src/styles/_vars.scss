@@ -1,0 +1,14 @@
+@import "~bourbon/app/assets/stylesheets/bourbon";
+@import "~susy/sass/susy";
+@import "mixins";
+
+//COLORS
+$bodyBg: cornflowerblue;
+
+//FONTS
+
+//GRID
+$susy: (
+    columns:12,
+    gutters:1/4
+);

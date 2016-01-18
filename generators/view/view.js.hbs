@@ -1,0 +1,13 @@
+import "styles/views/_{{#camelize}}{{name}}{{/camelize}}"
+import React from "react"
+import {render} from "react-dom"
+import View from "foo/core/View"
+
+export default class {{#camelize}}{{name}}{{/camelize}} extends View {
+static displayName = "{{#camelize}}{{name}}{{/camelize}}";
+
+render() {
+return (
+<div className="{{#camelize}}{{name}}{{/camelize}}"></div>)
+}
+}

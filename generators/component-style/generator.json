@@ -1,0 +1,8 @@
+{
+    "files": [{
+        "from": "style.scss.hbs",
+        "to": "src/styles/components/_{{name}}.scss"
+    }],
+
+    "dependencies": []
+}
