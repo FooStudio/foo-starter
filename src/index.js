@@ -7,15 +7,15 @@ import "application.scss";
 
 import React from "react";
 import {render} from "react-dom";
-import "gsap/src/uncompressed/TweenLite";
+import {config, environment} from "app/config/config"
 import App from "app/App";
 
+//IMPORT TWEENMAX / CREATE
+import "gsap/src/uncompressed/TweenMax";
 
 function startApp() {
-    render(
-        <App/>,
-        document.getElementById("root")
-    );
+    //Third parameter is data object
+    const app = new App(config, environment);
 }
 
 function loadData() {

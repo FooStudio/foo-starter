@@ -50,17 +50,24 @@ module.exports = {
                 loader: ExtractTextPlugin.extract('style', 'css?importLoaders=1&-url')
             }, {
                 test: /\.scss$/,
-                loader: ExtractTextPlugin.extract('style', 'css?-url&sourceMap!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap')
+                loader: 'style!raw!sass?outputStyle=expanded&sourceMap'
             },
             {
                 test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
                 loader: 'file?name=[name].[ext]'
             }, {
                 test: /\.json$/,
-                loaders: ['json'],
-                exclude: /node_modules/,
-                include: path.join(__dirname, 'src')
+                loaders: ['json']
+            }
+        ],
+        postLoaders: [
+            {
+                include: path.resolve(__dirname, 'node_modules/pixi.js'),
+                loader: 'transform/cacheable?brfs'
             }
         ]
     }
 };
+
+//loader: 'style!raw!sass?outputStyle=expanded&sourceMap'
+//loader: 'style!css?-url&sourceMap!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap'

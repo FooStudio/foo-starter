@@ -4,17 +4,18 @@
 
 import React from "react";
 import {render} from "react-dom";
-import View from "foo/core/View";
+import View from "foo/core/react/View";
 
 export default class Home extends View {
+
     static displayName = "Home";
     static path = "";
     static title = "Home";
 
     render() {
         return (<div className="Home">
-            <img src="assets/img/logo.gif" alt="logo"/>
-            <h1>Home Foo App</h1>
+            <h2>{locale.t("home.title")} Foo</h2>
+            <h3>{locale.t("view")}</h3>
         </div>)
     }
 }

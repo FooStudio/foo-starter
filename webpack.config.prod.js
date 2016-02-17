@@ -24,17 +24,17 @@ module.exports = {
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin({ // Optimize the JavaScript...
             compress: {
-                //sequences: true,
-                //dead_code: true,
-                //conditionals: true,
-                //booleans: true,
-                //if_return: true,
-                //join_vars: true,
+                sequences: true,
+                dead_code: true,
+                conditionals: true,
+                booleans: true,
+                if_return: true,
+                join_vars: true,
                 warnings: false // ...but do not show warnings in the console (there is a lot of them)
             },
             //mangle: true,
             output: {
-                //comments: false
+                comments: false
             }
         }),
         new HtmlWebpackPlugin({
@@ -82,16 +82,19 @@ module.exports = {
             loader: ExtractTextPlugin.extract('style', 'css?importLoaders=1&-url')
         }, {
             test: /\.scss$/,
-            loader: 'style!css?-url&sourceMap!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap'
-        },
+            loader: ExtractTextPlugin.extract('style', 'css?-url&sourceMap!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap')
+        }, {
+            test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+            loader: 'file?name=[name].[ext]'
+        }, {
+            test: /\.json$/,
+            loaders: ['json']
+        }],
+        postLoaders: [
             {
-                test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-                loader: 'file?name=[name].[ext]'
-            }, {
-                test: /\.json$/,
-                loaders: ['json'],
-                exclude: /node_modules/,
-                include: path.join(__dirname, 'src')
-            }]
+                include: path.resolve(__dirname, 'node_modules/pixi.js'),
+                loader: 'transform/cacheable?brfs'
+            }
+        ]
     }
 };

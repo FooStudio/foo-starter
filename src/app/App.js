@@ -1,31 +1,28 @@
 /**
  * Created by mendieta on 1/1/16.
  */
+
 import React from "react";
 import {render} from "react-dom";
-import {Router, Route, Link, IndexRoute} from "react-router"
-import history from "app/utils/history"
-import Component from "foo/core/Component";
+import AbstractApp from "foo/core/AbstractApp"
 
 import Main from "app/views/Main"
-import Home from "app/views/Home"
 
-export default class App extends Component {
-    static displayName  = "App";
+export default class App extends AbstractApp {
+    static displayName = "App";
 
     init() {
-
+        super.init();
     }
 
-    onRender() {
-
+    start() {
+        super.start();
     }
 
-    render() {
-        return (<Router history={history}>
-            <Route path={Main.path} component={Main}>
-                <IndexRoute path={Home.path} component={Home}/>
-            </Route>
-        </Router>);
+    renderApp() {
+        render(
+            <Main config={this.config} environment={this.environment} locale={this.locale} data={this.data}/>,
+            document.getElementById("root")
+        );
     }
 }
