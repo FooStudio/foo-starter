@@ -1,3 +1,6 @@
 {
-    "view":"View"
+    "view": "View",
+    "home": {
+        "title": "Home"
+    }
 }

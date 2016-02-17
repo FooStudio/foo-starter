@@ -6,6 +6,10 @@ import Component from "foo/core/react/Component"
 export default class Header extends Component {
     static displayName = "Header";
 
+    changeLocale(e) {
+        App.setLocale(e.currentTarget.getAttribute("data-lang"));
+    }
+
     render() {
         return (<div className="Header">
             <img src="assets/img/logo.gif" alt="logo"/>
@@ -14,6 +18,15 @@ export default class Header extends Component {
                 <a href="/">Home</a>
                 <a href="/test">Test</a>
             </nav>
+
+            <ul>
+                <li>
+                    <button onClick={this.changeLocale} data-lang="es-MX">es</button>
+                </li>
+                <li>
+                    <button onClick={this.changeLocale} data-lang="en-US">en</button>
+                </li>
+            </ul>
         </div>)
     }
 }
