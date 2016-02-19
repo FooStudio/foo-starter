@@ -1,0 +1,27 @@
+{
+    "source": "./src/foo",
+    "destination": "./docs/",
+    "title": "Foo()",
+    "access": [
+        "public",
+        "protected",
+        "private"
+    ],
+    "unexportIdentifier": true,
+    "plugins": [
+        {
+            "name": "esdoc-es7-plugin"
+        },
+        {
+            "name": "esdoc-importpath-plugin",
+            "option": {
+                "replaces": [
+                    {
+                        "from": "^foo/",
+                        "to": ""
+                    }
+                ]
+            }
+        }
+    ]
+}

@@ -8,7 +8,7 @@ import Component from "foo/core/react/Component"
 import Router from "foo/core/router/Router"
 import AppDispatcher from "foo/core/AppDispatcher"
 import ReactTransitionGroup from "react-addons-transition-group"
-//import Pixi from "app/views/Pixi"
+import Pixi from "app/views/Pixi"
 
 //IMPORT COMPONENTS
 import Header from "app/components/Header"
@@ -30,10 +30,11 @@ export default class Main extends Component {
     }
 
     onRender() {
-        //this.renderer = PIXI.autoDetectRenderer(800, 600, {backgroundColor: 0x6495ed});
-        //this.refs.pixi.appendChild(this.renderer.view);
-        //this.stage = new Pixi();
-        //AppDispatcher.RENDERED.add(this.onEnterFrame, this);
+        this.renderer = PIXI.autoDetectRenderer(800, 600, {backgroundColor: 0xcccccc});
+        this.refs.pixi.appendChild(this.renderer.view);
+        this.stage = new Pixi();
+        this.stage.interactive = true;
+        AppDispatcher.RENDERED.add(this.onEnterFrame, this);
         this.createRoutes();
     }
 
@@ -64,7 +65,7 @@ export default class Main extends Component {
     }
 
     onEnterFrame() {
-        //this.renderer.render(this.stage);
+        this.renderer.render(this.stage);
     }
 
     render() {

@@ -8,7 +8,7 @@ export default class Test extends View {
 
     render() {
         return (<div className="Test">
-            <h2>Test</h2>
+            <h2>{locale.t("test.title")}</h2>
         </div>)
     }
 }

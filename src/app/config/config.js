@@ -14,7 +14,7 @@ let config = {
         "facebook": true,
         "twitter": false,
         "instagram": false,
-        "gplus": false
+        "google": false
     },
     "vars": {
         "animate": true,

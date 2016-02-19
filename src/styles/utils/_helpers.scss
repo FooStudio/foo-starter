@@ -25,7 +25,7 @@
  * Hide from both screenreaders and browsers: h5bp.com/u
  */
 
-.helperhidden {
+.hidden {
     display: none !important;
     visibility: hidden;
 }
@@ -98,8 +98,6 @@
 .cf {
     *zoom: 1;
 }
-
-/* some neil added */
 
 // mostly for lists
 .unstyled {

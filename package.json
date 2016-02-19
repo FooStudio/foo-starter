@@ -1,6 +1,7 @@
 {
-  "name": "foo-web-starter",
+  "name": "foo",
   "description": "React + ES7 mininal skeleton for interactive websites.",
+  "repository": "https://github.com/FooStudio/foo",
   "version": "0.0.1",
   "license": "MIT",
   "author": "Foo()",
@@ -10,7 +11,8 @@
     "build:copy": "node build.js",
     "build": "npm run clean && npm run build:webpack && npm run build:copy",
     "start": "node server.js",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "doc": "esdoc -c esdoc.json"
   },
   "keywords": [],
   "dependencies": {
@@ -29,7 +31,7 @@
     "react-dom": "^0.14.5",
     "react-gsap-enhancer": "^0.2.1",
     "signals": "^1.0.0",
-    "r": "^1.7.2"
+    "superagent": "^1.7.2"
   },
   "devDependencies": {
     "autoprefixer-loader": "^3.1.0",
@@ -50,6 +52,9 @@
     "brfs": "^1.4.3",
     "copy-dir": "0.0.8",
     "css-loader": "^0.23.1",
+    "esdoc": "^0.4.5",
+    "esdoc-es7-plugin": "0.0.3",
+    "esdoc-importpath-plugin": "0.0.1",
     "eslint": "^1.10.3",
     "eslint-loader": "^1.1.1",
     "eslint-plugin-babel": "^3.0.0",

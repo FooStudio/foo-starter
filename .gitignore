@@ -9,6 +9,7 @@
 /node_modules/
 /dist/
 /bower_components/
+/docs/
 *.iws
 .idea_modules/
 .DS_Store

@@ -318,7 +318,7 @@ export default class StringUtils {
      * @static
      * @public
      * @param {string} string The string to add the pad
-     * @param {number}length The length of the pad to be added
+     * @param {number} length The length of the pad to be added
      * @param {string} [fillChar=" "] The character to fill the pad
      * @returns {string} The string with the padding
      */
@@ -347,6 +347,11 @@ export default class StringUtils {
         return string.replace(/[\t\r\n]|\s\s/g, "");
     }
 
+    /**
+     * Slugs the given string
+     * @param {string} replace The string to be replaced
+     * @returns {string} The slugged string
+     */
     static slugify(replace):string {
         let st = replace.toLowerCase();
         st = st.replace(/[\u00C0-\u00C5]/ig, "a");
@@ -361,17 +366,22 @@ export default class StringUtils {
         return (st.replace(/[^a-z\- ]*/gi, ""));
     }
 
+    /**
+     *  Returns a string that replaces '\n' for 'b' html tags
+     * @param {string} str The string to add line breaks form \n
+     * @returns {string}
+     */
     static addLineBreaks(str) {
         return str.replace(new RegExp("\r\n", "g"), "<br/>");
     }
 
+    /**
+     * Creates a html markup object for React set inner HTML
+     * @param {string} text The text to be added
+     * @returns {object}
+     */
     static createTextMarkup(text) {
         return {__html: text};
     }
-
-    static createLineBreakMarkup(text) {
-        return StringUtils.createTextMarkup(StringUtils.addLineBreaks(text));
-    }
-
 
 }

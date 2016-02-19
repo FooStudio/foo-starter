@@ -4,8 +4,18 @@
 
 import Signal from "signals"
 
+/**
+ * @access public
+ */
 export default class AppDispatcher {
 
+    /**
+     * Signal dispatched after locale has changed
+     * @static
+     * @property LOCALE_CHANGED
+     * @public
+     * @type {Signal}
+     */
     static LOCALE_CHANGED = new Signal();
     static LOCALE_LOADING = new Signal();
     static STARTED = new Signal();
