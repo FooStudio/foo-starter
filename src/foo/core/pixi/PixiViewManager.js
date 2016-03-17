@@ -42,6 +42,12 @@ export default class PixiViewManager {
         this.views = new Map();
 
         /**
+         * The prevView reference, used for concurrent animations
+         * @type {foo.core.pixi.AbstractView|null}
+         */
+        this.prevView = null;
+
+        /**
          * The currentView reference
          * @type {foo.core.pixi.AbstractView|null}
          */
@@ -111,12 +117,11 @@ export default class PixiViewManager {
             return false;
         }
         if (this.currentView != null) {
+            this.nextRoute = route;
+            this._closeCurrentView();
             if (this.concurrent) {
                 this._showView(route);
-            } else {
-                this.nextRoute = route;
             }
-            this._closeCurrentView();
         } else {
             this._showView(route);
         }
@@ -145,10 +150,8 @@ export default class PixiViewManager {
      */
     _onViewOpened() {
         this.viewOpened.dispatch();
-        if (!this.concurrent) {
-            this.currentView = this.nextView;
-            this.nextView = null;
-        }
+        this.currentView = this.nextView;
+        this.nextView = null;
     }
 
     /**
@@ -157,13 +160,13 @@ export default class PixiViewManager {
      * @return {void}
      */
     _onViewClosed() {
+        let view = this.concurrent ? this.prevView : this.currentView;
         this.viewClosed.dispatch();
-        this.container.removeChild(this.currentView);
+        this.container.removeChild(view);
         if (!this.concurrent) {
             this._showView(this.nextRoute);
         } else {
-            this.currentView = this.nextView;
-            this.nextView = null;
+            this.prevView = null;
         }
     }
 
@@ -175,6 +178,7 @@ export default class PixiViewManager {
     _closeCurrentView() {
         this.currentView.closed.addOnce(this._onViewClosed, this);
         this.currentView.close();
+        if (this.concurrent) this.prevView = this.currentView;
     }
 
 }
