@@ -9,7 +9,6 @@ import {render} from "react-dom"
  * Base component for DOM visualization, built on top of React.
  */
 export default class Component extends React.Component {
-    static displayName = "Component";
 
     /**
      * Not intended to be called directly from Javascript, internally called from React and JSX

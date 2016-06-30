@@ -7,7 +7,7 @@ import {render} from "react-dom";
 import Component from "foo/core/react/Component"
 import Router from "foo/core/router/Router"
 import AppDispatcher from "foo/core/AppDispatcher"
-import ReactTransitionGroup from "react-addons-transition-group"
+import TransitionGroupPlus from "react-transition-group-plus"
 import Pixi from "app/views/Pixi"
 
 //IMPORT COMPONENTS
@@ -33,9 +33,8 @@ export default class Main extends Component {
         this.renderer = PIXI.autoDetectRenderer(800, 600, {backgroundColor: 0xcccccc});
         this.refs.pixi.appendChild(this.renderer.view);
         this.stage = new Pixi();
-        this.stage.interactive = true;
-        AppDispatcher.RENDERED.add(this.onEnterFrame, this);
         this.createRoutes();
+        AppDispatcher.RENDERED.add(this.onEnterFrame, this);
     }
 
     createRoutes() {
@@ -71,9 +70,9 @@ export default class Main extends Component {
     render() {
         return (<div className="App">
             <Header/>
-            <ReactTransitionGroup>
+            <TransitionGroupPlus className="TransitionGroup" component="div"  transitionMode="simultaneous" deferLeavingComponentRemoval={false}>
                 {this.state.currentView}
-            </ReactTransitionGroup>
+            </TransitionGroupPlus>
             <div ref="pixi"/>
         </div>)
     }

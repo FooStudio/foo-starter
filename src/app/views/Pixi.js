@@ -11,6 +11,7 @@ import TestView from "app/views/pixi/TestView"
 export default class Pixi extends PixiMain {
     constructor() {
         super();
+        this.interactive = true;
     }
 
     init() {

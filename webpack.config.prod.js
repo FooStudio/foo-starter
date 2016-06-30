@@ -9,6 +9,7 @@ var nib = require("nib");
 var rupture = require("rupture");
 var poststylus = require("poststylus");
 var rucksack = require("rucksack-css");
+var lost = require("lost");
 
 module.exports = {
     devtool: 'source-map',
@@ -110,7 +111,8 @@ module.exports = {
                 rucksack({
                     autoprefixer:true,
                     fallbacks:true
-                })
+                }),
+                lost()
             ])
         ]
     },

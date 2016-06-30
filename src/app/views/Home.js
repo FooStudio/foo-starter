@@ -4,9 +4,15 @@ import {render} from "react-dom";
 import View from "foo/core/react/View";
 
 export default class Home extends View {
-    static displayName = "Home";
-    static path = "";
-    static title = "Home";
+
+
+    componentWillEnter(callback) {
+        callback();
+    }
+
+    componentWillLeave(callback) {
+        callback();
+    }
 
     render() {
         return (<div className="Home">

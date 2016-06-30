@@ -4,8 +4,6 @@ import {render} from "react-dom"
 import Component from "foo/core/react/Component"
 
 export default class Header extends Component {
-    static displayName = "Header";
-
     changeLocale(e) {
         App.setLocale(e.currentTarget.getAttribute("data-lang"));
     }

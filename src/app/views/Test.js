@@ -4,7 +4,14 @@ import {render} from "react-dom"
 import View from "foo/core/react/View"
 
 export default class Test extends View {
-    static displayName = "Test";
+
+    componentWillEnter(callback) {
+        callback();
+    }
+
+    componentWillLeave(callback) {
+        callback();
+    }
 
     render() {
         return (<div className="Test">
