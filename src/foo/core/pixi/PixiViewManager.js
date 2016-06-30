@@ -95,7 +95,7 @@ export default class PixiViewManager {
      */
     addView(view, route) {
         if (this.views.get(route) != undefined) {
-            console.error("PixiViewManger: A route can not be added twice -" + route);
+            console.error("PixiViewManger: A route can not be added twice - " + route);
             return false;
         }
         this.views.set(route, view);

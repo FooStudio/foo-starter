@@ -16,7 +16,7 @@ export default class Pixi extends PixiMain {
 
     init() {
         window.Router.routed.add(this.onRouted, this);
-        this.viewManager = new ViewManager(this, true);
+        this.viewManager = new ViewManager(this, false);
         this.viewManager.addView(SplashView, "/");
         this.viewManager.addView(TestView, "/test");
     }
