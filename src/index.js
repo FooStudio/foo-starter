@@ -1,9 +1,9 @@
 /**
  * Created by mendieta on 1/1/16.
  */
-import "normalize.css";
+//import "sanitize.css"
 import "styles/fonts.css";
-import "application.scss";
+import "application.styl";
 
 import FastClick from "fastclick";
 import Breakpoint from "foo/utils/Breakpoint"

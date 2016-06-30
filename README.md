@@ -1,23 +1,28 @@
 ## Languages
 - [ES7](https://babeljs.io/)
-- [SASS] (http://sass-lang.com/)
+- [Stylus] (http://stylus-lang.com/)
 
 ## Features
 - [.editorconfig] (http://editorconfig.org/)
-- [Bourbon] (http://bourbon.io/)
-- [Bourbon Neat] (http://neat.bourbon.io/)
 - [GSAP] (http://greensock.com/)
-- [Normalize.css] (https://necolas.github.io/normalize.css/)
+- [Sanitize.css] (https://10up.github.io/sanitize.css/)
 - [Polyglot.js] (http://airbnb.io/polyglot.js/)
 - [Page.js] (https://github.com/visionmedia/page.js)
 - [React] (https://facebook.github.io/react/)
-- [React Transition Group] (https://facebook.github.io/react/docs/animation.html)
+- [React Transition Group Plus] (https://github.com/cheapsteak/react-transition-group-plus)
 - [Signals.js] (https://millermedeiros.github.io/js-signals/)
 - [SuperAgent] (https://github.com/visionmedia/superagent)
 
 ## Plugins
 - [scaffolt] (https://github.com/paulmillr/scaffolt#readme)
 - [React hot module replacement] ()
+
+## Stylus plugins
+- [nib] (http://tj.github.io/nib/)
+- [rupture] (http://jescalan.github.io/rupture/)
+- [poststylus] (https://github.com/seaneking/poststylus)
+- [rucksack-css] (https://simplaio.github.io/rucksack/)
+- [lost] (http://lostgrid.org/)
 
 
 ## Getting started
@@ -26,11 +31,11 @@
 ## Generators
 scaffolt component <name>
     → app/components/name.js
-    → app/styles/components/_name.scss
+    → app/styles/components/name.styl
 
 scaffolt view <name>
     → app/views/name.js
-    → app/styles/views/_name.scss
+    → app/styles/views/name.styl
 
 ### Install and run development server
 

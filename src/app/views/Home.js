@@ -1,4 +1,4 @@
-import "styles/views/_Home"
+import "styles/views/Home"
 import React from "react";
 import {render} from "react-dom";
 import View from "foo/core/react/View";

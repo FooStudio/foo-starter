@@ -1,8 +1,7 @@
 {
     "plugins": [
         "transform-runtime",
-        "transform-react-display-name",
-        "transform-decorators-legacy"
+        "transform-decorators"
     ],
     "presets": [
         "es2015",

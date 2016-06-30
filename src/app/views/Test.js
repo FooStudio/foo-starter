@@ -1,4 +1,4 @@
-import "styles/views/_Test"
+import "styles/views/Test"
 import React from "react"
 import {render} from "react-dom"
 import View from "foo/core/react/View"

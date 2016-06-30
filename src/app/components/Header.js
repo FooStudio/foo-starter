@@ -1,4 +1,4 @@
-import "styles/components/_Header"
+import "styles/components/Header"
 import React from "react"
 import {render} from "react-dom"
 import Component from "foo/core/react/Component"

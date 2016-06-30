@@ -1,7 +1,7 @@
 {
     "files": [{
-        "from": "style.scss.hbs",
-        "to": "src/styles/views/_{{name}}.scss"
+        "from": "style.styl.hbs",
+        "to": "src/styles/views/{{name}}.styl"
     }],
 
     "dependencies": []

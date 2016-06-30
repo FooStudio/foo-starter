@@ -5,6 +5,12 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var WebpackNotifierPlugin = require("webpack-notifier");
 
+var nib = require("nib");
+var rupture = require("rupture");
+var poststylus = require("poststylus");
+var rucksack = require("rucksack-css");
+var lost = require("lost");
+
 module.exports = {
     devtool: 'eval-source-map',
     entry: [
@@ -27,7 +33,7 @@ module.exports = {
         })
     ],
     resolve: {
-        extensions: ['', '.js', '.json', '.css', '.scss'],
+        extensions: ['', '.js', '.json', '.css', '.styl'],
         modulesDirectories: ['src', 'node_modules', 'vendor', 'bower_components']
     },
     module: {
@@ -49,8 +55,8 @@ module.exports = {
                 test: /\.css$/,
                 loader: ExtractTextPlugin.extract('style', 'css?importLoaders=1&-url')
             }, {
-                test: /\.scss$/,
-                loader: 'style!raw!sass?outputStyle=expanded&sourceMap'
+                test: /\.styl/,
+                loader: 'style!raw!stylus-loader'
             },
             {
                 test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
@@ -66,7 +72,21 @@ module.exports = {
                 loader: 'transform/cacheable?brfs'
             }
         ]
-    }
+    },
+    stylus:{
+        use: [
+            nib(),
+            rupture(),
+            poststylus([
+                rucksack({
+                    autoprefixer:true,
+                    fallbacks:true
+                }),
+                lost()
+            ])
+        ]
+    },
+    target: "web"
 };
 
 //loader: 'style!raw!sass?outputStyle=expanded&sourceMap'
