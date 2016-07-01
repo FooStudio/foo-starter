@@ -9,7 +9,7 @@ const developmentURL = "http://localhost:3000/";
 //CONFIG
 
 let config = {
-    "locale": "es-MX",
+    "locale": "en-US",
     "apis": {
         "facebook": true,
         "twitter": false,

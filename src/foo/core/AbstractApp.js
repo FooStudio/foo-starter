@@ -112,8 +112,9 @@ export default class AbstractApp {
      * @returns {void}
      */
     _loadLocale() {
-        Requester.getJSON("assets/data/locale/" + this._polyglot.locale() + ".json", (error, data)=> {
+        Requester.getJSON("static/data/locale/" + this._polyglot.locale() + ".json", (error, data)=> {
             if (error) {
+                console.log(error);
                 console.error("Error: The provided locale was not found in the locales directory");
             } else {
                 this._polyglot.extend(data.body);
@@ -220,6 +221,7 @@ export default class AbstractApp {
      */
     start() {
         this.started = true;
+        AppDispatcher.STARTED.dispatch();
         this.renderApp();
     }
 

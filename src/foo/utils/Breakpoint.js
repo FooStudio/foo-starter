@@ -3,20 +3,36 @@
  */
 
 import Bowser from "bowser"
+import isMobile from "ismobilejs"
+import ObjectUtils from "foo/utils/ObjectUtils"
 
 export default class Breakpoint {
-    constructor(){
-        this.bowser();
+    static setup(){
+        this.body = document.getElementsByTagName("body")[0];
         this.mobile();
+        this.bowser();
     }
 
-    bowser(){
-        let body = document.getElementsByTagName("body")[0];
-        body.className+=" "+Bowser.name;
-        body.className+=" "+Bowser.version;
+    static bowser(){
+        this.body.classList.add(Bowser.name);
+        this.body.classList.add(Bowser.version);
     }
 
-    mobile(){
-        //TODO: ADD MOBILE CLASS TO BODY
+    static mobile(){
+        for(let key of ObjectUtils.getKeys(isMobile)){
+            if(typeof isMobile[key] !== "object" && isMobile[key] == true && key !== "any"){
+                this.body.classList.add(key);
+            }
+
+            if(typeof isMobile[key] == "object"){
+                for(let k of ObjectUtils.getKeys(isMobile[key])){
+                    if(isMobile[key][k] == true){
+                        this.body.classList.add(key);
+                        break;
+                    }
+                }
+            }
+        }
     }
+
 }

@@ -21,4 +21,5 @@ export default class AppDispatcher {
     static STARTED = new Signal();
     static RENDERED = new Signal();
     static RESIZED = new Signal();
+    static ROUTED = new Signal();
 }
