@@ -27,6 +27,7 @@ export default class Main extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        //console.log(nextProps.location);
         AppDispatcher.ROUTED.dispatch(nextProps.location);
     }
 
