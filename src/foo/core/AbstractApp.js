@@ -4,11 +4,9 @@
 
 import React from "react"
 import {render} from "react-dom"
-import MemorySats from "memory-stats"
 import Polyglot from "node-polyglot"
 import Requester from "foo/net/Requester"
 import AppDispatcher from "foo/core/AppDispatcher"
-import Component from "foo/core/react/Component"
 
 
 export default class AbstractApp {
@@ -192,9 +190,6 @@ export default class AbstractApp {
             AppDispatcher.RENDERED.dispatch();
             this._animate();
         });
-        if (this.environment.vars.debug) {
-            this.stats.update();
-        }
     }
 
     /**
@@ -203,15 +198,6 @@ export default class AbstractApp {
      * @returns {void}
      */
     _startDebug() {
-        /**
-         * MemoryStats indicator instance
-         * @type {MemoryStats}
-         */
-        this.stats = new MemorySats();
-        this.stats.domElement.style.position = "fixed";
-        this.stats.domElement.style.right = "0px";
-        this.stats.domElement.style.bottom = "0px";
-        document.body.appendChild(this.stats.domElement);
     }
 
     /**
