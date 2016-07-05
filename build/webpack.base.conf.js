@@ -21,15 +21,15 @@ module.exports = {
     },
     resolve: {
         extensions: ['', '.js', '.json', '.css', '.styl'],
-        //fallback: [path.join(__dirname, '../node_modules')],
+        fallback: [path.join(__dirname, '../node_modules')],
         modulesDirectories: ['src', 'node_modules', 'vendor', 'bower_components'],
         alias: {
-            //'src': path.resolve(__dirname, '../src'),
-            //'assets': path.resolve(__dirname, '../src/assets')
+            'src': path.resolve(__dirname, '../src'),
+            'assets': path.resolve(__dirname, '../src/assets')
         }
     },
     resolveLoader: {
-        //fallback: [path.join(__dirname, '../node_modules')]
+        fallback: [path.join(__dirname, '../node_modules')]
     },
     module: {
         preLoaders: [
@@ -88,7 +88,7 @@ module.exports = {
                 require("lost")()
             ])
         ],
-        import: ['~nib/lib/nib/index.styl']
+        import: ['~nib/lib/nib/index.styl', '~rupture/rupture/index.styl']
     },
     target: "web"
 };

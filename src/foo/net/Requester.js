@@ -1,8 +1,6 @@
 /**
  * Created by mendieta on 1/20/16.
  */
-
-import "Base64"
 import request from "superagent"
 
 /**

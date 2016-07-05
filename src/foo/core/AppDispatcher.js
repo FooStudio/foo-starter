@@ -9,6 +9,7 @@ import Signal from "signals"
  */
 export default class AppDispatcher {
 
+
     /**
      * Signal dispatched after locale has changed
      * @static
