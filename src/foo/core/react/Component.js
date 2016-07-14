@@ -15,22 +15,9 @@ export default class Component extends React.Component {
      * @param {object} props The props passed to the component
      * @return {void}
      */
-    constructor(props) {
-        super(props);
-        this._bind("onRender", "dispose");
+    constructor ( props ) {
+        super( props );
         this.init();
-    }
-
-    /**
-     * Binds the methods to the Class context
-     * @example
-     * this._bind("onClickHandler", "onOtherHandler");
-     * @param {...string} methods Spread operator, functions wrapped in strings separated by coma
-     * @private
-     * @return {void}
-     */
-    _bind(...methods) {
-        methods.forEach((method)=> this[method] = this[method].bind(this));
     }
 
     /**
@@ -38,7 +25,7 @@ export default class Component extends React.Component {
      * @abstract
      * @return {void}
      */
-    init() {
+    init () {
 
     }
 
@@ -46,16 +33,18 @@ export default class Component extends React.Component {
      * @ignore
      * @returns {void}
      */
-    componentWillMount() {
+    componentWillMount () {
         this.onBeforeRender();
     }
 
     /**
-     * Invoked once, both on the client and server, immediately before the initial rendering occurs. If you call setState within this method, render() will see the updated state and will be executed only once despite the state change.
+     * Invoked once, both on the client and server, immediately before the initial rendering occurs. If you call
+     * setState within this method, render() will see the updated state and will be executed only once despite the
+     * state change.
      * @abstract
      * @return {void}
      */
-    onBeforeRender() {
+    onBeforeRender () {
 
     }
 
@@ -63,30 +52,40 @@ export default class Component extends React.Component {
      * @ignore
      * @returns {void}
      */
-    componentDidMount() {
+    componentDidMount () {
         this.onRender();
     }
 
     /**
-     * Invoked once, only on the client (not on the server), immediately after the initial rendering occurs. At this point in the lifecycle, you can access any refs to your children (e.g., to access the underlying DOM representation). The onRender() method of child components is invoked before that of parent components.
+     * Invoked once, only on the client (not on the server), immediately after the initial rendering occurs. At this
+     * point in the lifecycle, you can access any refs to your children (e.g., to access the underlying DOM
+     * representation). The onRender() method of child components is invoked before that of parent components.
      *
-     * If you want to integrate with other JavaScript frameworks, set timers using setTimeout or setInterval, or send AJAX requests, perform those operations in this method.
+     * If you want to integrate with other JavaScript frameworks, set timers using setTimeout or setInterval, or send
+     * AJAX requests, perform those operations in this method.
      * @abstract
      * @return {void}
      */
-    onRender() {
+    onRender () {
     }
 
     /**
      * Invoked when a component is receiving new props. This method is not called for the initial render.
      *
-     * Use this as an opportunity to react to a prop transition before render() is called by updating the state using this.setState(). The old props can be accessed via this.props. Calling this.setState() within this function will not trigger an additional render.
+     * Use this as an opportunity to react to a prop transition before render() is called by updating the state using
+     * this.setState(). The old props can be accessed via this.props. Calling this.setState() within this function will
+     * not trigger an additional render.
      *
-     * If shouldComponentUpdate returns false, then render() will be completely skipped until the next state change. In addition, componentWillUpdate and componentDidUpdate will not be called.
+     * If shouldComponentUpdate returns false, then render() will be completely skipped until the next state change. In
+     * addition, componentWillUpdate and componentDidUpdate will not be called.
      *
-     * By default, shouldComponentUpdate always returns true to prevent subtle bugs when state is mutated in place, but if you are careful to always treat state as immutable and to read only from props and state in render() then you can override shouldComponentUpdate with an implementation that compares the old props and state to their replacements.
+     * By default, shouldComponentUpdate always returns true to prevent subtle bugs when state is mutated in place, but
+     * if you are careful to always treat state as immutable and to read only from props and state in render() then you
+     * can override shouldComponentUpdate with an implementation that compares the old props and state to their
+     * replacements.
      *
-     * If performance is a bottleneck, especially with dozens or hundreds of components, use shouldComponentUpdate to speed up your app.
+     * If performance is a bottleneck, especially with dozens or hundreds of components, use shouldComponentUpdate to
+     * speed up your app.
      *
      * @example
      componentWillReceiveProps(nextProps) {
@@ -98,12 +97,13 @@ export default class Component extends React.Component {
      * @param {object} nextProps The future props to be set
      * @returns {void}
      */
-    componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps ( nextProps ) {
 
     }
 
     /**
-     * Invoked immediately before rendering when new props or state are being received. This method is not called for the initial render.
+     * Invoked immediately before rendering when new props or state are being received. This method is not called for
+     * the initial render.
      *
      * Use this as an opportunity to perform preparation before an update occurs.
      * @param {object} nextProps The future props
@@ -111,13 +111,15 @@ export default class Component extends React.Component {
      * @abstract
      * @returns {void}
      */
-    componentWillUpdate(nextProps, nextState) {
+    componentWillUpdate ( nextProps, nextState ) {
     }
 
     /**
-     * Invoked before rendering when new props or state are being received. This method is not called for the initial render or when forceUpdate is used.
+     * Invoked before rendering when new props or state are being received. This method is not called for the initial
+     * render or when forceUpdate is used.
      *
-     * Use this as an opportunity to return false when you're certain that the transition to the new props and state will not require a component update.
+     * Use this as an opportunity to return false when you're certain that the transition to the new props and state
+     * will not require a component update.
      * @example
      shouldComponentUpdate(nextProps, nextState) {
       return nextProps.id !== this.props.id;
@@ -127,12 +129,13 @@ export default class Component extends React.Component {
      * @abstract
      * @returns {boolean} Default true
      */
-    shouldComponentUpdate(nextProps, nextState) {
+    shouldComponentUpdate ( nextProps, nextState ) {
         return true
     }
 
     /**
-     * Invoked immediately after the component's updates are flushed to the DOM. This method is not called for the initial render.
+     * Invoked immediately after the component's updates are flushed to the DOM. This method is not called for the
+     * initial render.
      *
      * Use this as an opportunity to operate on the DOM when the component has been updated.
      * @param {object} prevProps The previous props
@@ -140,7 +143,7 @@ export default class Component extends React.Component {
      * @abstract
      * @return {void}
      */
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate ( prevProps, prevState ) {
 
     }
 
@@ -153,7 +156,7 @@ export default class Component extends React.Component {
      * @returns {void}
      * @abstract
      */
-    componentWillAppear(callback) {
+    componentWillAppear ( callback ) {
         callback();
     }
 
@@ -162,16 +165,18 @@ export default class Component extends React.Component {
      * @abstract
      * @return {void}
      */
-    componentDidAppear() {
+    componentDidAppear () {
     }
 
     /**
-     * This is called at the same time as onRender() for components added to an existing TransitionGroup. It will block other animations from occurring until callback is called. It will not be called on the initial render of a TransitionGroup.
+     * This is called at the same time as onRender() for components added to an existing TransitionGroup. It will block
+     * other animations from occurring until callback is called. It will not be called on the initial render of a
+     * TransitionGroup.
      * @param {function} callback Function to be called when the animation has finished
      * @abstract
      * @return {void}
      */
-    componentWillEnter(callback) {
+    componentWillEnter ( callback ) {
         callback();
     }
 
@@ -180,16 +185,17 @@ export default class Component extends React.Component {
      * @abstract
      * @return {void}
      */
-    componentDidEnter() {
+    componentDidEnter () {
     }
 
     /**
-     * This is called when the child has been removed from the ReactTransitionGroup. Though the child has been removed, ReactTransitionGroup will keep it in the DOM until callback is called.
+     * This is called when the child has been removed from the ReactTransitionGroup. Though the child has been removed,
+     * ReactTransitionGroup will keep it in the DOM until callback is called.
      * @param {function} callback Function to be called when the animation has finished
      * @abstract
      * @return {void}
      */
-    componentWillLeave(callback) {
+    componentWillLeave ( callback ) {
         callback();
     }
 
@@ -198,24 +204,26 @@ export default class Component extends React.Component {
      * @abstract
      * @returns {void}
      */
-    componentDidLeave() {
+    componentDidLeave () {
     }
 
     /**
      * @ignore
      * @returns {void}
      */
-    componentWillUnmount() {
+    componentWillUnmount () {
         this.dispose();
     }
 
     /**
      * Invoked immediately before a component is unmounted from the DOM.
      *
-     * Perform any necessary cleanup in this method, such as invalidating timers or cleaning up any DOM elements that were created in onRender.
+     * Perform any necessary cleanup in this method, such as invalidating timers or cleaning up any DOM elements that
+     * were created in onRender.
      * @abstract
      * @returns {void}
      */
-    dispose() {
+    dispose () {
+
     }
 }

@@ -1,9 +1,12 @@
 import "styles/components/{{#camelize}}{{name}}{{/camelize}}"
-import React from "react"
+import React, {PropTypes} from "react"
 import {render} from "react-dom"
 import Component from "foo/core/react/Component"
 
 export default class {{#camelize}}{{name}}{{/camelize}} extends Component {
+
+    static propTypes = {}
+
     render() {
         return (<div className="{{#camelize}}{{name}}{{/camelize}}"></div>)
     }

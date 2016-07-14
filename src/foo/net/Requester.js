@@ -22,6 +22,7 @@ import request from "superagent"
  * }
  */
 export default class Requester {
+
     /**
      * Fetches a JSON with GET protocol
      * @param {string} url The url to be fetched
@@ -29,11 +30,11 @@ export default class Requester {
      * @static
      * @return {void}
      */
-    static getJSON(url, cb) {
+    static getJSON ( url, cb ) {
         request
-            .get(url)
-            .set("Accept", "application/json")
-            .end(cb);
+            .get( url )
+            .set( "Accept", "application/json" )
+            .end( cb );
     }
 
     /**
@@ -43,12 +44,12 @@ export default class Requester {
      * @param {function} cb The callback when the request finished or fails
      * @return {void}
      */
-    static postJSON(url, obj, cb) {
+    static postJSON ( url, obj, cb ) {
         request
-            .post(url)
-            .set("Content-Type", "application/json")
-            .set("Accept", "application/json")
-            .send(obj)
-            .end(cb);
+            .post( url )
+            .set( "Content-Type", "application/json" )
+            .set( "Accept", "application/json" )
+            .send( obj )
+            .end( cb );
     }
 }

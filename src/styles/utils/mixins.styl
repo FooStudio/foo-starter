@@ -6,6 +6,24 @@ Mixins available:
 -   outline radius          - arguments: Radius: 5px
 ------------------------------------------------------------- */
 
+size($width, $height = $width)
+    width: $width
+    height: $height
+
+font-smoothing() {
+    if current-property {
+        -webkit-{current-property}: arguments
+        if arguments == antialiased {
+            -moz-osx-{current-property}: grayscale
+        } else if arguments == subpixel-antialiased {
+            -moz-osx-{current-property}: auto
+        }
+        {current-property}: arguments
+    } else {
+        error('font-smoothing() must be used within a property');
+    }
+}
+
 /* BORDER RADIUS */
 border-radius($radiu = 5px) {
     -moz-border-radius: $radius;
