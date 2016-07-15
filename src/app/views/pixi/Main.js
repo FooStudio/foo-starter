@@ -18,6 +18,11 @@ export default class Main extends PixiMain {
         this.viewManager = new ViewManager( this, false );
         this.viewManager.addView( SplashView, "/" );
         this.viewManager.addView( TestView, "/test" );
+        App.store.subscribe( ( store )=> {
+            if ( store.router.pathname !== this.viewManager.currentRoute ) {
+                this.viewManager.openView( store.router.pathname );
+            }
+        } );
         //AppDispatcher.ROUTED.add( this.onRouted, this );
     }
 

@@ -1,4 +1,4 @@
-import "pixi.js"
+//import "pixi.js"
 
 export default class AbstractContainer extends PIXI.Container {
 

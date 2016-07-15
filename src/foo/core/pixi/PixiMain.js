@@ -1,4 +1,4 @@
-import "pixi.js"
+//import "pixi.js"
 
 /**
  * Pixi.js App Main class

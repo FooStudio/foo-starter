@@ -2,7 +2,7 @@
  * Created by mendieta on 7/8/16.
  */
 
-import {INCREASE, DECREASE} from "app/constants/user"
+import {INCREASE, DECREASE} from "app/constants/app"
 
 export function increase ( n ) {
     return {
@@ -17,3 +17,5 @@ export function decrease ( n ) {
         amount: n
     }
 }
+
+

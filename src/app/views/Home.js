@@ -14,6 +14,8 @@ class Home extends View {
         onDecrease: PropTypes.func.isRequired
     }
 
+
+
     componentWillEnter ( callback ) {
         TweenMax.fromTo( this.refs[ "self" ], 0.75, { alpha: 0 },
             { alpha: 1, ease: Power4.easeOut, onComplete: callback } );

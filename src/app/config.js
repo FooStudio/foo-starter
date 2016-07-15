@@ -22,7 +22,7 @@ const config = {
         "google"  : false
     },
     "vars"                : {
-        "animate": false,
+        "animate": true,
         "resize" : true
     },
     "urls"                : {},
