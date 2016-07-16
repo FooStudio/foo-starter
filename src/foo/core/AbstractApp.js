@@ -90,7 +90,7 @@ export default class AbstractApp {
      * @override
      */
     init () {
-        if ( this.DEBUG )this.startDebug();
+        if ( this.DEBUG ) this.startDebug();
         this._addListeners();
         this._initSDKs();
         (this.config.asset_loading) ? this.loadAssets() : this.start();

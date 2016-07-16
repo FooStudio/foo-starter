@@ -16,7 +16,6 @@ const startApp = ( data = null )=> {
     require.ensure( [], () => {
         //IMPORT TWEENMAX / CREATE / ETC
         require( "gsap/src/uncompressed/TweenMax" );
-        require("pixi.js/bin/pixi.js")
 
         //IMPORT APP
         let App   = require( "app/App" ).default;

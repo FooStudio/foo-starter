@@ -50,7 +50,7 @@ module.exports = {
             {
                 test: /\.json$/,
                 exclude: /(node_modules|bower_components|vendor)/,
-                loader: 'json',
+                loader: utils.assetsPath('data/[name].[ext]'),
                 include: projectRoot
             },
             {

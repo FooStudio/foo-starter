@@ -7,6 +7,7 @@ import {LOCALE_CHANGED, LOCALE_LOADING, RESIZE, RENDER, STARTED} from "foo/core/
 const initialState = {
     started       : false,
     locale        : "",
+    locale_data   : null,
     locale_loading: false,
     size          : { width: window.innerWidth, height: window.innerHeight }
 }
@@ -14,7 +15,7 @@ const initialState = {
 export default function update ( state = initialState, action ) {
     switch ( action.type ) {
         case LOCALE_CHANGED:
-            return Object.assign( {}, state, { locale: action.locale, data: action.data, locale_loading: false } )
+            return Object.assign( {}, state, { locale: action.locale, locale_data: action.locale_data, locale_loading: false } )
         case LOCALE_LOADING:
             return Object.assign( {}, state, { locale_loading: true } )
         case RESIZE:

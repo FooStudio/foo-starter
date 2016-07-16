@@ -4,11 +4,11 @@
 
 import {LOCALE_CHANGED, LOCALE_LOADING, RESIZE, RENDER, STARTED} from "foo/core/redux/constants"
 
-export function locale_changed ( locale, data) {
+export function locale_changed ( locale, locale_data ) {
     return {
         type  : LOCALE_CHANGED,
         locale: locale,
-        data: data
+        locale_data: locale_data
     }
 }
 
