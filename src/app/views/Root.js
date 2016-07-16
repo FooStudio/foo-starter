@@ -8,7 +8,7 @@ import {connect} from "react-redux"
 import Component from "foo/core/react/Component"
 import TransitionGroupPlus from "react-transition-group-plus"
 
-import Pixi from "app/views/pixi/Main"
+// import Pixi from "app/views/pixi/Main"
 
 //IMPORT COMPONENTS
 import Header from "app/components/Header"
@@ -20,9 +20,9 @@ class Root extends Component {
     }
 
     onRender () {
-        this.renderer = PIXI.autoDetectRenderer( 800, 600, { backgroundColor: 0xcccccc } );
-        this.refs.pixi.appendChild( this.renderer.view );
-        this.stage = new Pixi();
+        // this.renderer = PIXI.autoDetectRenderer( 800, 600, { backgroundColor: 0xcccccc } );
+        // this.refs.pixi.appendChild( this.renderer.view );
+        // this.stage = new Pixi();
     }
 
     componentWillReceiveProps ( nextProps ) {

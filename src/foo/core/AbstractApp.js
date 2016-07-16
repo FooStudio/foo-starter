@@ -135,7 +135,7 @@ export default class AbstractApp {
                 console.error( "Error: The provided locale was not found in the locales directory" );
             } else {
                 this._polyglot.extend( data.body );
-                App.store.dispatch( locale_changed( this._polyglot.locale() ) )
+                App.store.dispatch( locale_changed( this._polyglot.locale(), data.body ) )
                 if ( this.started ) {
                     this.renderApp();
                 } else {
@@ -205,7 +205,7 @@ export default class AbstractApp {
      */
     _animate () {
         requestAnimationFrame( ()=> {
-            App.store.dispatch( rendered() );
+            // App.store.dispatch( rendered() );
             this._animate();
         } );
     }

@@ -14,7 +14,7 @@ const initialState = {
 export default function update ( state = initialState, action ) {
     switch ( action.type ) {
         case LOCALE_CHANGED:
-            return Object.assign( {}, state, { locale: action.locale, locale_loading: false } )
+            return Object.assign( {}, state, { locale: action.locale, data: action.data, locale_loading: false } )
         case LOCALE_LOADING:
             return Object.assign( {}, state, { locale_loading: true } )
         case RESIZE:
@@ -26,5 +26,3 @@ export default function update ( state = initialState, action ) {
     }
     return state
 }
-
-

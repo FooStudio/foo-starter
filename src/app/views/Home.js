@@ -10,6 +10,7 @@ class Home extends View {
 
     static propTypes = {
         count     : PropTypes.number.isRequired,
+        data     : PropTypes.object.isRequired,
         onIncrease: PropTypes.func.isRequired,
         onDecrease: PropTypes.func.isRequired
     }
@@ -17,8 +18,7 @@ class Home extends View {
 
 
     componentWillEnter ( callback ) {
-        TweenMax.fromTo( this.refs[ "self" ], 0.75, { alpha: 0 },
-            { alpha: 1, ease: Power4.easeOut, onComplete: callback } );
+        TweenMax.fromTo( this.refs[ "self" ], 0.75, { alpha: 0 }, { alpha: 1, ease: Power4.easeOut, onComplete: callback } );
     }
 
     componentWillLeave ( callback ) {
@@ -26,9 +26,10 @@ class Home extends View {
     }
 
     render () {
+        const {data} = this.props;
         return (<div ref="self" className="Home">
-            <h2>{locale.t( "home.title" )} Foo</h2>
-            <h3>{locale.t( "view" )}</h3>
+            <h2>{data.home.title} Foo</h2>
+            <h3>{data.view}</h3>
 
             <p>dsfsdd</p>
 
@@ -43,7 +44,7 @@ class Home extends View {
 }
 
 const mapStateToProps = ( state )=> {
-    return { count: state.count.number }
+    return { count: state.count.number, data: state.app.data }
 }
 
 const mapDispatchToProps = ( dispatch ) => {

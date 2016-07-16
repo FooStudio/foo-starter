@@ -1,9 +1,11 @@
 {
     "view": "Ver",
     "home": {
-        "title": "Casa"
+        "title": "Inicio",
+        "subtitle": "Este es el inicio"
     },
     "test": {
-        "title": "Prueba"
+        "title": "Prueba",
+        "subtitle": "Esta es una prueba"
     }
 }

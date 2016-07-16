@@ -50,7 +50,7 @@ module.exports = {
             {
                 test: /\.json$/,
                 exclude: /(node_modules|bower_components|vendor)/,
-                loader: utils.assetsPath('data/[name].[ext]'),
+                loader: 'json',
                 include: projectRoot
             },
             {
@@ -71,6 +71,12 @@ module.exports = {
                     name: utils.assetsPath('fonts/[name].[ext]')
                 }
             }
+        ],
+        postLoaders: [
+          {
+            include: path.join(__dirname, '../node_modules'),
+            loader: 'transform/cacheable?brfs'
+          }
         ]
     },
     eslint: {

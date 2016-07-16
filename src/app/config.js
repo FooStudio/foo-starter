@@ -102,4 +102,3 @@ switch ( host.split( ":" ).shift() ) {
 const environment = config[ "environments" ][ env ];
 
 module.exports = { config, environment };
-

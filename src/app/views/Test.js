@@ -1,9 +1,11 @@
 import "styles/views/Test"
 import React from "react"
+import {connect} from "react-redux"
 import {render} from "react-dom"
 import View from "foo/core/react/View"
+import ctg from "foo/core/redux/redux-transition"
 
-export default class Test extends View {
+class Test extends View {
 
     componentWillEnter ( callback ) {
         TweenMax.fromTo( this.refs[ "self" ], 0.75, { alpha: 0 },
@@ -15,9 +17,16 @@ export default class Test extends View {
     }
 
     render () {
+        const { test } = this.props.locale;
         return (<div ref="self" className="Test">
-            <h2>{locale.t( "test.title" )}</h2>
-            <h3>ssss</h3>
+            <h2>{test.title}</h2>
+            <h3>{test.subtitle}</h3>
         </div>)
     }
 }
+
+const mapStateToProps = ( state )=> {
+    return { locale: state.app.locale_data }
+}
+
+export default connect(mapStateToProps)( Test )

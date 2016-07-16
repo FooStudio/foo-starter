@@ -49,10 +49,10 @@ export default class App extends AbstractApp {
     }
 
     renderApp () {
-        render( <Provider store={this.store}>
+        render(
+          <Provider store={this.store}>
             <Root/>
-        </Provider>, document.getElementById( "root" ) )
+          </Provider>, document.getElementById( "root" )
+        )
     }
 }
-
-

@@ -4,7 +4,7 @@
 import "babel-polyfill";
 
 import "sanitize.css/sanitize.css"
-import "application.styl";
+import "application.styl"
 
 import GoogleAnalytics from "foo/utils/tracking/GoogleAnalytics"
 
@@ -13,7 +13,7 @@ import Requester from "foo/net/Requester";
 import {config, environment} from "app/config";
 
 const startApp = ( data = null )=> {
-    require.ensure( [], ()=> {
+    require.ensure( [], () => {
         //IMPORT TWEENMAX / CREATE / ETC
         require( "gsap/src/uncompressed/TweenMax" );
         require("pixi.js/bin/pixi.js")
