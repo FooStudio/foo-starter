@@ -13,9 +13,8 @@ export default class Header extends Component {
         return (<div className="Header">
             <h1>Header</h1>
             <img src={require( "assets/img/logo.gif" )} alt="logo"/>
-
             <nav>
-                <Link to={"/"}>Home</Link> / <Link to={"/test"}>Test</Link>
+                <Link to={"/"}>Home</Link> / <Link to={"/test"}>Test</Link> / <Link to={"/404"}>404</Link>
             </nav>
 
             <ul>

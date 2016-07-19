@@ -6,7 +6,6 @@ import React, {PropTypes} from "react";
 import {render} from "react-dom";
 import {connect} from "react-redux"
 import Component from "foo/core/react/Component"
-import TransitionGroupPlus from "react-transition-group-plus"
 
 // import Pixi from "app/views/pixi/Main"
 
@@ -31,7 +30,7 @@ class Root extends Component {
     render () {
         return (<div className="App">
             <Header/>
-              {this.props.router.partial}
+            {this.props.children}
             <div ref="pixi"/>
         </div>)
     }

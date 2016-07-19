@@ -8,15 +8,13 @@ import {Provider} from "react-redux"
 import configureStore from "app/store"
 
 //FOO ROUTER
-import Router from "foo/core/router/Router"
-import Routes from "app/Routes"
+import Router from "foo/core/react/Router"
+import routes from "app/Routes"
 
 import AbstractApp from "foo/core/AbstractApp"
 import Root from "app/views/Root"
 
 export default class App extends AbstractApp {
-    router
-    routes
 
     constructor ( config, environment, data = {} ) {
         const store = configureStore();
@@ -44,15 +42,17 @@ export default class App extends AbstractApp {
      */
     start () {
         super.start();
-        this.router = new Router( this.environment.vars.route );
-        this.routes = new Routes();
+        //this.router = new Router( this.environment.vars.route );
+        //this.routes = new Routes();
     }
 
     renderApp () {
         render(
-          <Provider store={this.store}>
-            <Root/>
-          </Provider>, document.getElementById( "root" )
+            <Provider store={this.store}>
+                <Root>
+                    <Router routes={routes} base={this.environment.vars.route}/>
+                </Root>
+            </Provider>, document.getElementById( "root" )
         )
     }
 }

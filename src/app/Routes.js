@@ -1,32 +1,28 @@
 /**
  * Created by mendieta on 7/13/16.
  */
-
-import React from "react"
-
 import Home from "app/views/Home"
 import Test from "app/views/Test"
 
-export default class Routes {
-
-    constructor () {
-        this.buildRoutes();
-        App.router.start();
+const routes = [
+    {
+        "name"     : "home",
+        "url"      : "/",
+        "component": Home,
+        "assets"   : []
+    },
+    {
+        "name"     : "test",
+        "url"      : "/test",
+        "component": Test,
+        "handler"  : onHandle
     }
+]
 
-    buildRoutes () {
-        App.router.addRoute( "/", this.home )
-        App.router.addRoute( "/test", this.test );
-    }
-
-    home = ( ctx, next )=> {
-        ctx.partial = <Home key={ctx.path}/>
-        next()
-    }
-
-    test = ( ctx, next )=> {
-        ctx.partial = <Test key={ctx.path}/>
-        next()
-    }
-
+function onHandle ( ctx, next ) {
+    //DO SOME SYNC DATA LOADING OR TRANSFORMS
+    next();
 }
+
+export default routes;
+
