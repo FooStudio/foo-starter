@@ -30,7 +30,7 @@ export default function update ( state = initialState, action ) {
         case LOGIN:
             break
         case LOGIN_FAIL:
-            return Object.assign( {}, state, { error: action.error } )
+            return { ...state, error: action.error }
         case LOGIN_SUCCESS:
             return Object.assign( {}, state, { logged: true }, action.data )
     }
