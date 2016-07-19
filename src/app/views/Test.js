@@ -45,4 +45,9 @@ const mapStateToProps = ( state )=> {
     return { locale: state.app.locale_data }
 }
 
-export default connect(mapStateToProps)( Test )
+export default ctg( connect(
+    mapStateToProps,
+    null,
+    null,
+    { withRef: true }
+)( Test ) )

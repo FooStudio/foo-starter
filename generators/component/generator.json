@@ -3,12 +3,11 @@
         {
             "from": "component.js.hbs",
             "to": "src/app/components/{{name}}.js"
+        },
+        {
+            "from": "component.styl.hbs",
+            "to": "src/styles/components/{{name}}.styl"
         }
     ],
-    "dependencies": [
-        {
-            "name": "component-style",
-            "params": "{{name}}"
-        }
-    ]
+    "dependencies": []
 }

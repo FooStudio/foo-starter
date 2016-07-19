@@ -31,7 +31,11 @@ class Root extends Component {
     render () {
         return (<div className="App">
             <Header/>
+<<<<<<< a61d90e27130d49794bfdf08bb0244354ea9fb09
               {this.props.router.partial}
+=======
+            {this.props.children}
+>>>>>>> Update Foo React Router
             <div ref="pixi"/>
         </div>)
     }

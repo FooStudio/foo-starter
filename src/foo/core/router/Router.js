@@ -116,6 +116,7 @@ export default class Router {
 
         page( "*", ( ctx, next )=> {
             ctx.partial = {}
+            console.log("init")
             //DISPATCH INIT LOADING
             next();
         } )
@@ -129,6 +130,7 @@ export default class Router {
      */
     start () {
         page( "*", ( ctx, next )=> {
+            console.log("not found")
             App.store.dispatch( routed( ctx ) );
         } )
         page.start( this.options );

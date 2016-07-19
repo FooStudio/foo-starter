@@ -3,12 +3,11 @@
         {
             "from": "view.js.hbs",
             "to": "src/app/views/{{name}}.js"
+        },
+        {
+            "from": "view.styl.hbs",
+            "to": "src/styles/views/{{name}}.styl"
         }
     ],
-    "dependencies": [
-        {
-            "name": "view-style",
-            "params": "{{name}}"
-        }
-    ]
+    "dependencies": []
 }
