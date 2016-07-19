@@ -2,7 +2,7 @@
  * Created by mendieta on 7/13/16.
  */
 
-//USER ACTIONS CONSTANTS
+// User constants
 export const LOGIN            = "user/login"
 export const LOGIN_SUCCESS    = "user/login/success"
 export const LOGIN_FAIL       = "user/login/fail"

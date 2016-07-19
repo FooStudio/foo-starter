@@ -7,7 +7,7 @@ import {render} from "react-dom";
 import {Provider} from "react-redux"
 import configureStore from "app/store"
 
-//FOO ROUTER
+// Foo Router
 import Router from "foo/core/react/Router"
 import routes from "app/Routes"
 
@@ -21,25 +21,18 @@ export default class App extends AbstractApp {
         super( config, environment, data, store );
     }
 
-    /**
-     * CALLED JUST AFTER INITAL DATA IS LOADED (LOCALE/SDKS/ETC)
-     */
+    // Called just after inital data is loaded (locale/sdks/etc).
     init () {
         super.init();
     }
 
-    /**
-     * ASSET LOADING METHOD
-     * JUST IN CASE "ASSET_LOADING" IN CONFIG IS SET TO TRUE
-     */
+    // Asset loading method only if "asset_loading" in config is set to true.
     loadAssets () {
         //CALL START METHOD AFTER LOADING ASSETS
         this.start();
     }
 
-    /**
-     * CALLED JUST BEFORE THE RENDER METHODS
-     */
+    // Called just before the render method.
     start () {
         super.start();
         //this.router = new Router( this.environment.vars.route );

@@ -14,22 +14,23 @@ import {config, environment} from "app/config";
 
 const startApp = ( data = null )=> {
     require.ensure( [], () => {
-        //IMPORT TWEENMAX / CREATE / ETC
+        // Import GSAP, Create.js, etc.
         require( "gsap/src/uncompressed/TweenMax" );
 
-        //IMPORT APP
+        // Import the App
         let App   = require( "app/App" ).default;
-        //Third parameter is data object
+
+        // Create the app, third parameter is the data (if exists)
         const app = new App( config, environment, data );
     }, "app" );
 }
 
-//LOADS THE INITAL APP DATA || STARTS THE APP
+// Start the App
 const loadData = ()=> {
-    //SETUP BREAKPOINTS
+    // Setup Breakpoints
     Breakpoint.setup();
 
-    //DO INITIAL DATA/ASSET LOADING || START APP
+    // Load assets / Start the App
     if ( config.data_loading ) {
         console.info( "Foo:", "Load App Data" );
         Requester.getJSON( "static/data/data.json", ( error, data )=> { startApp( data.body ); } );
@@ -38,9 +39,7 @@ const loadData = ()=> {
     }
 }
 
-/**
- * LOADS THE ANALYTICS ADAPTER BASED ON CONFIG
- */
+// Load the Analytics (based on config)
 const loadAnalyticsAdapter = ()=> {
     switch ( config.analytics ) {
         case "google":
@@ -51,6 +50,7 @@ const loadAnalyticsAdapter = ()=> {
     loadData();
 }
 
+// Check if document is Ready, then start the flow
 if ( document.readyState !== "complete" ) {
     document.addEventListener( "DOMContentLoaded", loadAnalyticsAdapter );
 } else {

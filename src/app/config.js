@@ -9,7 +9,7 @@ const productionURL    = "http://www.fooprojects.com/" + productionRoute;
 const developmentRoute = "";
 const developmentURL   = "http://localhost:3000/" + developmentRoute;
 
-//CONFIG
+// Config
 const config = {
     "locale"              : "en-US",
     "analytics"           : "google",

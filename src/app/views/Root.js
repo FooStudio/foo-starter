@@ -9,7 +9,7 @@ import Component from "foo/core/react/Component"
 
 // import Pixi from "app/views/pixi/Main"
 
-//IMPORT COMPONENTS
+// Components
 import Header from "app/components/Header"
 
 class Root extends Component {

@@ -1,6 +1,6 @@
 /**
  * Created by mendieta on 7/13/16.
  */
-//APP SPECIFIC ACTIONS CONSTANTS
+// App constants
 export const INCREASE = "INCREASE"
 export const DECREASE = "DECREASE"
