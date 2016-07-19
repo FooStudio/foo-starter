@@ -6,16 +6,19 @@ import ctg from "foo/core/redux/redux-transition"
 import View from "foo/core/react/View"
 import Form from "app/components/Form"
 
+import { routeAppear, routeLeave } from 'app/animations/routes'
+import gsap from 'react-gsap-enhancer'
+
 class Test extends View {
+
     state = { submit: false, submitted: false };
 
     componentWillEnter ( callback ) {
-        TweenMax.fromTo( this.refs[ "self" ], 0.75, { alpha: 0 },
-            { alpha: 1, ease: Power4.easeOut, onComplete: callback } );
+        this.addAnimation(routeAppear, { callback });
     }
 
     componentWillLeave ( callback ) {
-        TweenMax.to( this.refs[ "self" ], 0.75, { alpha: 0, ease: Power4.easeOut, onComplete: callback } );
+        this.addAnimation(routeLeave, { callback });
     }
 
     handleSubmit = ( data ) => {
@@ -33,7 +36,7 @@ class Test extends View {
     render () {
         const { test } = this.props.locale;
         return (
-            <div ref="self" className="Test">
+            <div className="Test">
                 <h2>{test.title}</h2>
                 <h3>{test.subtitle}</h3>
                 <Form onSubmit={this.handleSubmit} submit={this.state.submit} submitted={this.state.submitted}/>
@@ -45,6 +48,8 @@ class Test extends View {
 const mapStateToProps = ( state )=> {
     return { locale: state.app.locale_data }
 }
+
+Test = gsap()(Test)
 
 export default ctg( connect(
     mapStateToProps,

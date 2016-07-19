@@ -6,6 +6,9 @@ import ctg from "foo/core/redux/redux-transition"
 import {increase, decrease} from "app/actions/count"
 import View from "foo/core/react/View";
 
+import { routeAppear, routeLeave } from 'app/animations/routes'
+import gsap from 'react-gsap-enhancer'
+
 class Home extends View {
 
     static propTypes = {
@@ -16,18 +19,18 @@ class Home extends View {
     }
 
     componentWillEnter ( callback ) {
-        TweenMax.fromTo( this.refs[ "self" ], 0.75, { alpha: 0 }, { alpha: 1, ease: Power4.easeOut, onComplete: callback } );
+        this.addAnimation(routeAppear, { callback });
     }
 
     componentWillLeave ( callback ) {
-        TweenMax.to( this.refs[ "self" ], 0.75, { alpha: 0, ease: Power4.easeOut, onComplete: callback } );
+        this.addAnimation(routeLeave, { callback });
     }
 
     render () {
         const { home } = this.props.locale;
         const { count } = this.props;
         return (
-          <div ref="self" className="Home">
+          <div className="Home">
             <h2>{home.title} Foo</h2>
             <h3>{home.subtitle}</h3>
 
@@ -57,9 +60,11 @@ const mapDispatchToProps = ( dispatch ) => {
     }
 }
 
-export default ctg( connect(
+Home = gsap()(Home)
+
+export default ctg(connect(
     mapStateToProps,
     mapDispatchToProps,
     null,
     { withRef: true }
-)( Home ) )
+)( Home ))
