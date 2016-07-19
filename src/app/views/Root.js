@@ -31,10 +31,7 @@ class Root extends Component {
     render () {
         return (<div className="App">
             <Header/>
-            <TransitionGroupPlus className="TransitionGroup" component="div" transitionMode="simultaneous"
-                                 deferLeavingComponentRemoval={false}>
-                {this.props.router.partial}
-            </TransitionGroupPlus>
+              {this.props.router.partial}
             <div ref="pixi"/>
         </div>)
     }
