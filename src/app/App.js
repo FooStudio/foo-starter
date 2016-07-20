@@ -16,36 +16,35 @@ import Root from "app/views/Root"
 
 export default class App extends AbstractApp {
 
-    constructor ( config, environment, data = {} ) {
+    constructor(config, environment, data = {}) {
         const store = configureStore();
-        super( config, environment, data, store );
+        super(config, environment, data, store);
     }
 
     // Called just after inital data is loaded (locale/sdks/etc).
-    init () {
+    init() {
         super.init();
     }
 
     // Asset loading method only if "asset_loading" in config is set to true.
-    loadAssets () {
+    loadAssets() {
         //CALL START METHOD AFTER LOADING ASSETS
         this.start();
     }
 
     // Called just before the render method.
-    start () {
+    start() {
         super.start();
         //this.router = new Router( this.environment.vars.route );
         //this.routes = new Routes();
     }
 
-    renderApp () {
+    renderApp() {
         render(
             <Provider store={this.store}>
-                <Root>
-                    <Router routes={routes} base={this.environment.vars.route}/>
-                </Root>
-            </Provider>, document.getElementById( "root" )
-        )
+            <Root>
+                <Router routes={routes} base={this.environment.vars.route}/>
+            </Root>
+        </Provider>, document.getElementById("root"))
     }
 }

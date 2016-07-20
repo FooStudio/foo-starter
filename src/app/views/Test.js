@@ -6,35 +6,39 @@ import ctg from "foo/core/redux/redux-transition"
 import View from "foo/core/react/View"
 import Form from "app/components/Form"
 
-import { routeAppear, routeLeave } from 'app/animations/routes'
+import {routeAppear, routeLeave} from 'app/animations/routes'
 import gsap from 'react-gsap-enhancer'
 
+@gsap()
 class Test extends View {
 
-    state = { submit: false, submitted: false };
+    state = {
+        submit: false,
+        submitted: false
+    };
 
-    componentWillEnter ( callback ) {
-        this.addAnimation(routeAppear, { callback });
+    componentWillEnter(callback) {
+        this.addAnimation(routeAppear, {callback});
     }
 
-    componentWillLeave ( callback ) {
-        this.addAnimation(routeLeave, { callback });
+    componentWillLeave(callback) {
+        this.addAnimation(routeLeave, {callback});
     }
 
-    handleSubmit = ( data ) => {
-        this.setState( { submit: true } );
+    handleSubmit = (data) => {
+        this.setState({submit: true});
         let d = new FormData();
-        for ( const key in data ) {
-            if ( {}.hasOwnProperty.call( data, key ) ) {
+        for (const key in data) {
+            if ({}.hasOwnProperty.call(data, key)) {
                 // console.log(key, data[key]);
-                d.append( key, data[ key ] );
+                d.append(key, data[key]);
             }
         }
-        this.setState( { submit: false, submitted: true } );
+        this.setState({submit: false, submitted: true});
     }
 
-    render () {
-        const { test } = this.props.locale;
+    render() {
+        const {test} = this.props.locale;
         return (
             <div className="Test">
                 <h2>{test.title}</h2>
@@ -45,15 +49,8 @@ class Test extends View {
     }
 }
 
-const mapStateToProps = ( state )=> {
-    return { locale: state.app.locale_data }
+const mapStateToProps = (state) => {
+    return {locale: state.app.locale_data}
 }
 
-Test = gsap()(Test)
-
-export default ctg( connect(
-    mapStateToProps,
-    null,
-    null,
-    { withRef: true }
-)( Test ) )
+export default ctg(connect(mapStateToProps, null, null, {withRef: true})(Test))
