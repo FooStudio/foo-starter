@@ -11,12 +11,11 @@ import GoogleAnalytics from "foo/utils/tracking/GoogleAnalytics"
 import Breakpoint from "foo/utils/Breakpoint"
 import Requester from "foo/net/Requester"
 import {config, environment} from "app/config"
-import { TweenMax } from 'gsap'
 
 const startApp = ( data = null )=> {
     require.ensure( [], () => {
         // Import GSAP, Create.js, etc.
-        // require( "gsap/src/uncompressed/TweenMax" );
+        require('gsap').TweenMax;
 
         // Import the App
         let App   = require( "app/App" ).default;
