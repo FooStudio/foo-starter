@@ -7,7 +7,8 @@ import {render} from "react-dom"
 import Polyglot from "node-polyglot"
 import Requester from "foo/net/Requester"
 import Analytics from "foo/utils/Analytics"
-import {locale_changed, locale_loading, resize, rendered, started} from "foo/core/redux/actions"
+import Dispatcher from "app/Dispatcher"
+import {locale_changed, locale_loading, resize, started} from "foo/core/redux/actions"
 
 export default class AbstractApp {
 
@@ -206,6 +207,7 @@ export default class AbstractApp {
     _animate () {
         requestAnimationFrame( ()=> {
             // App.store.dispatch( rendered() );
+            Dispatcher.RENDER.dispatch();
             this._animate();
         } );
     }
