@@ -5,6 +5,7 @@ import View from "foo/core/react/View"
 
 export default class {{#camelize}}{{name}}{{/camelize}} extends View {
 
+    static displayName = "{{#camelize}}{{name}}{{/camelize}}";
     static propTypes = {}
 
     onRender(){

@@ -5,6 +5,7 @@ import Component from "foo/core/react/Component"
 
 export default class {{#camelize}}{{name}}{{/camelize}} extends Component {
 
+    static displayName = "{{#camelize}}{{name}}{{/camelize}}";
     static propTypes = {}
 
     render() {
