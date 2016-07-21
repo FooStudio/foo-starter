@@ -1,4 +1,4 @@
-import "pixi.js"
+//import "pixi.js"
 
 export default class AbstractContainer extends PIXI.Container {
 
@@ -9,18 +9,6 @@ export default class AbstractContainer extends PIXI.Container {
     constructor() {
         super();
         this.init();
-    }
-
-    /**
-     * Binds the methods to the Class context
-     * @example
-     * this._bind("onClickHandler", "onOtherHandler");
-     * @param {...string} methods Spread operator, functions wrapped in strings separated by coma
-     * @private
-     * @return {void}
-     */
-    _bind(...methods) {
-        methods.forEach((method)=> this[method] = this[method].bind(this));
     }
 
     /**

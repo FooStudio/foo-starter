@@ -1,24 +1,59 @@
 import "styles/views/Home"
-import React from "react";
-import {render} from "react-dom";
-import View from "foo/core/react/View";
+import React, {PropTypes} from "react"
+import {render} from "react-dom"
+import {connect} from "react-redux"
+import ctg from "foo/core/redux/redux-transition"
+import {increase, decrease} from "app/actions/count"
+import View from "foo/core/react/View"
 
-export default class Home extends View {
+import {routeAppear, routeLeave} from 'app/animations/routes'
+import gsap from 'react-gsap-enhancer'
+
+@gsap()
+class Home extends View {
+    static propTypes = {
+        count: PropTypes.number.isRequired,
+        locale: PropTypes.object.isRequired,
+        onIncrease: PropTypes.func.isRequired,
+        onDecrease: PropTypes.func.isRequired
+    }
 
     componentWillEnter(callback) {
-        TweenMax.fromTo(this.refs["self"], 0.75, {alpha:0}, {alpha:1, ease:Power4.easeOut, onComplete:callback});
-        //callback();
+        this.addAnimation(routeAppear, {callback});
     }
 
     componentWillLeave(callback) {
-        TweenMax.to(this.refs["self"], 0.75, {alpha:0, ease:Power4.easeOut, onComplete:callback});
-        //callback();
+        this.addAnimation(routeLeave, {callback});
     }
 
     render() {
-        return (<div ref="self" className="Home">
-            <h2>{locale.t("home.title")} Foo</h2>
-            <h3>{locale.t("view")}</h3>
-        </div>)
+        const {home} = this.props.locale;
+        const {count, onIncrease, onDecrease} = this.props;
+        return (
+            <div className="Home">
+                <h2>{home.title} Foo</h2>
+                <h3>{home.subtitle}</h3>
+                <button onClick={onIncrease}>increase</button>
+                <button onClick={onDecrease}>decrease</button>
+                <div>Some state changes: {count}</div>
+            </div>
+        );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {count: state.count.number, locale: state.app.locale_data}
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onIncrease: () => {
+            dispatch(increase(1))
+        },
+        onDecrease: () => {
+            dispatch(decrease(1))
+        }
+    }
+}
+
+export default ctg(connect(mapStateToProps, mapDispatchToProps, null, {withRef: true})(Home))

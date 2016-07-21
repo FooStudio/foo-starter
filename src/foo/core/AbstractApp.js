@@ -6,10 +6,11 @@ import React from "react"
 import {render} from "react-dom"
 import Polyglot from "node-polyglot"
 import Requester from "foo/net/Requester"
-import AppDispatcher from "foo/core/AppDispatcher"
-
+import Analytics from "foo/utils/Analytics"
+import {locale_changed, locale_loading, resize, rendered, started} from "foo/core/redux/actions"
 
 export default class AbstractApp {
+
     static displayName = "AbstractApp";
 
     /**
@@ -20,14 +21,37 @@ export default class AbstractApp {
      * @param {object} config App config object
      * @param {object} environment App environment object
      * @param {object} [data={}] App initial load data
+     * @param {object} store App Redux store
      */
-    constructor(config, environment, data = {}) {
+    constructor ( config, environment, data = {}, store ) {
+
+        /**
+         * The App store
+         * @property store
+         * @type {Object}
+         */
+        this.store = store;
+
+        /**
+         * The app debug flasg
+         * @property DEBUG
+         * @type {boolean}
+         */
+        this.DEBUG = environment.vars.debug;
+
         /**
          * The app config object
          * @property config
          * @type {Object}
          */
         this.config = config;
+
+        /**
+         * The app analytics util
+         * @property analytics
+         * @type {Analytics}
+         */
+        this.analytics = null;
 
         /**
          * App environment object
@@ -57,20 +81,7 @@ export default class AbstractApp {
          */
         this.locale = "es-MX";
         window.App = this;
-        this.init = this.init.bind(this);
-        this._setupPolyglot = this._setupPolyglot.bind(this);
-        this._setupPolyglot();
-    }
-
-    /**
-     * The method binds the methods passed as parameters to this scope
-     * @param {...Function} methods Methods to be bind to this, separated by commas
-     * @private
-     * @method _bind
-     * @returns {void}
-     */
-    _bind(...methods) {
-        methods.forEach((method)=> this[method] = this[method].bind(this));
+        this._setupAnalytics();
     }
 
     /**
@@ -78,12 +89,20 @@ export default class AbstractApp {
      * @method init
      * @override
      */
-    init() {
-        this._bind("_onResizeHandler");
-        if (this.environment.vars.debug)this._startDebug();
+    init () {
+        if ( this.DEBUG ) this.startDebug();
         this._addListeners();
         this._initSDKs();
-        this.start();
+        (this.config.asset_loading) ? this.loadAssets() : this.start();
+    }
+
+    /**
+     * Method that init the Analytics helper
+     * @private
+     * @returns {void}
+     */
+    _setupAnalytics () {
+        this.analytics = new Analytics( "static/data/tracking.json", this.config.analytics, this._setupPolyglot() )
     }
 
     /**
@@ -92,7 +111,7 @@ export default class AbstractApp {
      * @method _setupPolyglot
      * @returns {void}
      */
-    _setupPolyglot() {
+    _setupPolyglot () {
         /**
          * Polyglot instance
          * @private
@@ -100,7 +119,7 @@ export default class AbstractApp {
          */
         this._polyglot = new Polyglot();
         window.locale = this._polyglot;
-        this._polyglot.locale(this.config.locale);
+        this._polyglot.locale( this.config.locale );
         this._loadLocale();
     }
 
@@ -109,21 +128,21 @@ export default class AbstractApp {
      * @private
      * @returns {void}
      */
-    _loadLocale() {
-        Requester.getJSON("static/data/locale/" + this._polyglot.locale() + ".json", (error, data)=> {
-            if (error) {
-                console.log(error);
-                console.error("Error: The provided locale was not found in the locales directory");
+    _loadLocale () {
+        Requester.getJSON( "static/data/locale/" + this._polyglot.locale() + ".json", ( error, data )=> {
+            if ( error ) {
+                console.log( error );
+                console.error( "Error: The provided locale was not found in the locales directory" );
             } else {
-                this._polyglot.extend(data.body);
-                AppDispatcher.LOCALE_CHANGED.dispatch();
-                if (this.started) {
+                this._polyglot.extend( data.body );
+                App.store.dispatch( locale_changed( this._polyglot.locale(), data.body ) )
+                if ( this.started ) {
                     this.renderApp();
                 } else {
                     this.init();
                 }
             }
-        });
+        } );
     }
 
     /**
@@ -131,9 +150,9 @@ export default class AbstractApp {
      * @param {string} locale The locale to set as current
      * @returns {void}
      */
-    setLocale(locale) {
-        AppDispatcher.LOCALE_LOADING.dispatch();
-        this._polyglot.locale(locale);
+    setLocale ( locale ) {
+        App.store.dispatch( locale_loading() )
+        this._polyglot.locale( locale );
         this._loadLocale();
     }
 
@@ -142,9 +161,9 @@ export default class AbstractApp {
      * @private
      * @returns {void}
      */
-    _addListeners() {
-        if (this.config.vars.resize) window.addEventListener("resize", this._onResizeHandler);
-        if (this.config.vars._animate || this.environment.vars.debug) this._animate();
+    _addListeners () {
+        if ( this.config.vars.resize ) window.addEventListener( "resize", this._onResizeHandler );
+        if ( this.config.vars.animate ) this._animate();
     }
 
     /**
@@ -152,10 +171,10 @@ export default class AbstractApp {
      * @private
      * @returns {void}
      */
-    _initSDKs() {
-        const {apis} = this.config;
-        if (apis.facebook) {
-            console.log("init facebook");
+    _initSDKs () {
+        const { apis } = this.config;
+        if ( apis.facebook ) {
+            console.log( "init facebook" );
         }
     }
 
@@ -165,7 +184,7 @@ export default class AbstractApp {
      * @private
      * @returns {void}
      */
-    _onResizeHandler(e) {
+    _onResizeHandler ( e ) {
         /**
          * App window width
          * @type {Number}
@@ -176,20 +195,19 @@ export default class AbstractApp {
          * @type {Number}
          */
         this.height = window.innerHeight;
-        AppDispatcher.RESIZED.dispatch(this.width, this.height);
+        App.store.dispatch( resize( this.width, this.height ) );
     }
-
 
     /**
      * Method that loops animation frameworks
      * @private
      * @returns {void}
      */
-    _animate() {
-        requestAnimationFrame(()=> {
-            AppDispatcher.RENDERED.dispatch();
+    _animate () {
+        requestAnimationFrame( ()=> {
+            // App.store.dispatch( rendered() );
             this._animate();
-        });
+        } );
     }
 
     /**
@@ -197,7 +215,16 @@ export default class AbstractApp {
      * @private
      * @returns {void}
      */
-    _startDebug() {
+    startDebug () {
+    }
+
+    /**
+     * Method to load all assets
+     * @override
+     * @return {void
+     */
+    loadAssets () {
+
     }
 
     /**
@@ -205,9 +232,9 @@ export default class AbstractApp {
      * @override
      * @returns {void}
      */
-    start() {
+    start () {
         this.started = true;
-        AppDispatcher.STARTED.dispatch();
+        App.store.dispatch( started() );
         this.renderApp();
     }
 
@@ -217,8 +244,7 @@ export default class AbstractApp {
      * @override
      * @returns {void}
      */
-    renderApp() {
+    renderApp () {
 
     }
-
 }

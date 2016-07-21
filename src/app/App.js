@@ -4,32 +4,47 @@
 
 import React from "react";
 import {render} from "react-dom";
-import {Router, Route, IndexRoute, browserHistory} from "react-router"
-import AbstractApp from "foo/core/AbstractApp"
-import Main from "app/views/Main"
+import {Provider} from "react-redux"
+import configureStore from "app/store"
 
-//IMPORT VIEWS
-import Home from "app/views/Home"
-import Test from "app/views/Test"
+// Foo Router
+import Router from "foo/core/react/Router"
+import routes from "app/Routes"
+
+import AbstractApp from "foo/core/AbstractApp"
+import Root from "app/views/Root"
 
 export default class App extends AbstractApp {
-    static displayName = "App";
 
-    init() {
-        super.init();
-        this.history = browserHistory;
+    constructor(config, environment, data = {}) {
+        const store = configureStore();
+        super(config, environment, data, store);
     }
 
+    // Called just after inital data is loaded (locale/sdks/etc).
+    init() {
+        super.init();
+    }
+
+    // Asset loading method only if "asset_loading" in config is set to true.
+    loadAssets() {
+        //CALL START METHOD AFTER LOADING ASSETS
+        this.start();
+    }
+
+    // Called just before the render method.
     start() {
         super.start();
+        //this.router = new Router( this.environment.vars.route );
+        //this.routes = new Routes();
     }
 
     renderApp() {
-        render(<Router history={browserHistory}>
-            <Route path="/" config={this.config} environment={this.environment} locale={this.locale} data={this.data} component={Main}>
-                <IndexRoute component={Home}/>
-                <Route path="/test" component={Test}/>
-            </Route>
-        </Router>, document.getElementById("root"));
+        render(
+            <Provider store={this.store}>
+            <Root>
+                <Router routes={routes} base={this.environment.vars.route}/>
+            </Root>
+        </Provider>, document.getElementById("root"))
     }
 }

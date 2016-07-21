@@ -71,6 +71,12 @@ module.exports = {
                     name: utils.assetsPath('fonts/[name].[ext]')
                 }
             }
+        ],
+        postLoaders: [
+          {
+            include: path.join(__dirname, '../node_modules'),
+            loader: 'transform/cacheable?brfs'
+          }
         ]
     },
     eslint: {

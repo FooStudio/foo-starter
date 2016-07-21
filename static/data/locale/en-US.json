@@ -1,9 +1,11 @@
 {
     "view": "View",
     "home": {
-        "title": "Home"
+        "title": "Home",
+        "subtitle": "This is the Home"
     },
     "test": {
-        "title": "Test"
+        "title": "Test",
+        "subtitle": "This a Test"
     }
 }
