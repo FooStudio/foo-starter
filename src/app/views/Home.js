@@ -11,6 +11,7 @@ import gsap from 'react-gsap-enhancer'
 
 @gsap()
 class Home extends View {
+    static displayName = "Home";
     static propTypes = {
         count: PropTypes.number.isRequired,
         locale: PropTypes.object.isRequired,

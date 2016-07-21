@@ -13,8 +13,7 @@ import {loaderAppear, loaderDisapper} from "app/animations/loader"
 class Loader extends Component {
 
     static displayName = "Loader";
-
-    static propTypes = {}
+    static propTypes   = {}
 
     componentDidUpdate ( prevProps, prevState ) {
         if ( this.props.loading ) {

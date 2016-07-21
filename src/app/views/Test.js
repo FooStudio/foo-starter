@@ -11,7 +11,7 @@ import gsap from 'react-gsap-enhancer'
 
 @gsap()
 class Test extends View {
-
+    static displayName = "Test";
     state = {
         submit: false,
         submitted: false
