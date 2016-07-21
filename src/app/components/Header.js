@@ -1,7 +1,6 @@
 import "styles/components/Header"
-import React from "react"
+import React, {Component} from "react"
 import {render} from "react-dom"
-import Component from "foo/core/react/Component"
 import Link from "foo/core/router/Link"
 
 export default class Header extends Component {
@@ -11,7 +10,7 @@ export default class Header extends Component {
 
     render () {
         return (<div className="Header">
-            <h1>Header</h1>
+            <h1>Header kklkl</h1>
             <img src={require( "assets/img/logo.gif" )} alt="logo"/>
             <nav>
                 <Link to={"/"}>Home</Link> / <Link to={"/test"}>Test</Link> / <Link to={"/404"}>404</Link>

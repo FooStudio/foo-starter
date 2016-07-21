@@ -2,8 +2,7 @@
  * Created by mendieta on 7/13/16.
  */
 
-import React, {PropTypes} from "react"
-import Component from "foo/core/react/Component"
+import React, {PropTypes, Component} from "react"
 
 export default class Link extends Component {
 

@@ -2,10 +2,9 @@
  * Created by mendieta on 1/14/16.
  */
 
-import React, {PropTypes} from "react";
+import React, {PropTypes, Component} from "react";
 import {render} from "react-dom";
 import {connect} from "react-redux"
-import Component from "foo/core/react/Component"
 
 // import Pixi from "app/views/pixi/Main"
 
@@ -30,7 +29,7 @@ class Root extends Component {
         return (
             <div className="App">
                 <Loader/>
-                <Header/> {this.props.children}
+                <Header/>{this.props.children}
                 <div ref="pixi"/>
             </div>
         )
@@ -38,7 +37,7 @@ class Root extends Component {
 }
 
 const mapStatetoProps = ( state ) => {
-    return { router: state.router }
+    return { router: state.router, locale: state.app.locale }
 }
 
 export default connect( mapStatetoProps )( Root )

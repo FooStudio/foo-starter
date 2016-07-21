@@ -1,7 +1,6 @@
 import "styles/components/Loader"
-import React, {PropTypes} from "react"
+import React, {PropTypes, Component} from "react"
 import {render} from "react-dom"
-import Component from "foo/core/react/Component"
 import gsap from "react-gsap-enhancer"
 
 import {connect} from "react-redux"
@@ -26,7 +25,7 @@ class Loader extends Component {
     render () {
         return (<div className="Loader">
             <h5>LOADING</h5>
-            <p>progress: {this.props.progress}</p>
+            <p>progress ---: {this.props.progress}</p>
         </div>)
     }
 }

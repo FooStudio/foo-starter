@@ -120,6 +120,9 @@ export default class AbstractApp {
          */
         this._polyglot = new Polyglot();
         window.locale = this._polyglot;
+        window.$t     = ( key, options )=> {
+            return this._polyglot.t( key, options );
+        };
         this._polyglot.locale( this.config.locale );
         this._loadLocale();
     }
@@ -137,9 +140,7 @@ export default class AbstractApp {
             } else {
                 this._polyglot.extend( data.body );
                 App.store.dispatch( locale_changed( this._polyglot.locale(), data.body ) )
-                if ( this.started ) {
-                    this.renderApp();
-                } else {
+                if ( !this.started ) {
                     this.init();
                 }
             }
