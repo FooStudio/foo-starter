@@ -37,8 +37,9 @@ export default class Analytics {
      */
     _startTracking = ()=> {
         const state = App.store.getState();
-        if ( this.currentRoute !== state.router.path ) {
-            this.currentRoute = state.router.path
+        const path  = state.routing.locationBeforeTransitions.pathname
+        if ( this.currentRoute !== path ) {
+            this.currentRoute = path
             this.trackPage( this.currentRoute );
         }
     }

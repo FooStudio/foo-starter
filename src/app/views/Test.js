@@ -8,8 +8,15 @@ import Form from "app/components/Form"
 import {routeAppear, routeLeave} from 'app/animations/routes'
 import gsap from 'react-gsap-enhancer'
 
+const mapStateToProps = ( state ) => {
+    return { locale: state.app.locale_data }
+}
+
+@ctg
+@connect( mapStateToProps, null, null, { withRef: true } )
 @gsap()
-class Test extends React.Component {
+export default class Test extends React.Component {
+
     static displayName = "Test";
            state       = {
                submit   : false,
@@ -29,7 +36,6 @@ class Test extends React.Component {
         let d = new FormData();
         for ( const key in data ) {
             if ( {}.hasOwnProperty.call( data, key ) ) {
-                // console.log(key, data[key]);
                 d.append( key, data[ key ] );
             }
         }
@@ -42,15 +48,8 @@ class Test extends React.Component {
             <div className="Test">
                 <h2>{test.title}</h2>
                 <h3>{test.subtitle}</h3>
-                <p>dfokkk kllklkl</p>
                 <Form onSubmit={this.handleSubmit} submit={this.state.submit} submitted={this.state.submitted}/>
             </div>
         )
     }
 }
-
-const mapStateToProps = ( state ) => {
-    return { locale: state.app.locale_data }
-}
-
-export default ctg( connect( mapStateToProps, null, null, { withRef: true } )( Test ) )

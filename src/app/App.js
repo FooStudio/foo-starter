@@ -6,45 +6,42 @@ import React from "react";
 import {render} from "react-dom";
 import {Provider} from "react-redux"
 import configureStore from "app/store"
+import {syncHistoryWithStore} from "react-router-redux"
 
-// Foo Router
-import Router from "foo/core/react/Router"
+//REACT ROUTER
+import {Router, Route, browserHistory} from "react-router"
 import routes from "app/Routes"
 
 import AbstractApp from "foo/core/AbstractApp"
-import Root from "app/views/Root"
 
 export default class App extends AbstractApp {
 
-    constructor(config, environment, data = {}) {
+    constructor ( config, environment, data = {} ) {
         const store = configureStore();
-        super(config, environment, data, store);
+        super( config, environment, data, store );
     }
 
     // Called just after inital data is loaded (locale/sdks/etc).
-    init() {
+    init () {
+        this.history = syncHistoryWithStore( browserHistory, this.store )
         super.init();
     }
 
     // Asset loading method only if "asset_loading" in config is set to true.
-    loadAssets() {
+    loadAssets () {
         //CALL START METHOD AFTER LOADING ASSETS
         this.start();
     }
 
     // Called just before the render method.
-    start() {
+    start () {
         super.start();
-        //this.router = new Router( this.environment.vars.route );
-        //this.routes = new Routes();
     }
 
-    renderApp() {
+    renderApp () {
         render(
             <Provider store={this.store}>
-            <Root>
-                <Router routes={routes} base={this.environment.vars.route}/>
-            </Root>
-        </Provider>, document.getElementById("root"))
+                <Router history={this.history} routes={routes}/>
+            </Provider>, document.getElementById( "root" ) )
     }
 }
