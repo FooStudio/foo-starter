@@ -10,24 +10,26 @@ import Component from "foo/core/react/Component"
 // import Pixi from "app/views/pixi/Main"
 
 // Components
+import Loader from "app/components/Loader"
 import Header from "app/components/Header"
 
 class Root extends Component {
     static displayName = "App";
 
-    init() {}
+    init () {}
 
-    onRender() {
+    onRender () {
         // this.renderer = PIXI.autoDetectRenderer( 800, 600, { backgroundColor: 0xcccccc } );
         // this.refs.pixi.appendChild( this.renderer.view );
         // this.stage = new Pixi();
     }
 
-    componentWillReceiveProps(nextProps) {}
+    componentWillReceiveProps ( nextProps ) {}
 
-    render() {
+    render () {
         return (
             <div className="App">
+                <Loader/>
                 <Header/> {this.props.children}
                 <div ref="pixi"/>
             </div>
@@ -35,8 +37,8 @@ class Root extends Component {
     }
 }
 
-const mapStatetoProps = (state) => {
-    return {router: state.router}
+const mapStatetoProps = ( state ) => {
+    return { router: state.router }
 }
 
-export default connect(mapStatetoProps)(Root)
+export default connect( mapStatetoProps )( Root )

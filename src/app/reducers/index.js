@@ -9,7 +9,8 @@ import router from "foo/core/router/reducer"
 
 import count from "app/reducers/count"
 import user from "app/reducers/user"
-import { reducer as form } from 'redux-form'
+import loader from "app/reducers/loader"
+import {reducer as form} from 'redux-form'
 
 export default function createReducer () {
     return combineReducers( {
@@ -17,6 +18,7 @@ export default function createReducer () {
         router,
         count,
         user,
+        loader,
         form
     } )
 }

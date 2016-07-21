@@ -4,7 +4,7 @@ export function routeAppear(utils) {
       alpha: 0,
       ease: Sine.easeOut,
       overwrite: 'all',
-      onComplete: utils.options.callback,
+        onComplete: utils.options.callback,
     });
 }
 
