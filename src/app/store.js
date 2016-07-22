@@ -5,7 +5,7 @@
 import {createStore} from "redux"
 import createReducer from "app/reducers"
 
-export default function configureStore ( initialState ) {
+export default function configureStore ( initialState, history ) { // eslint-disable-line
     const store = createStore( createReducer(), window.devToolsExtension && window.devToolsExtension(), initialState )
 
     if ( module.hot ) {
