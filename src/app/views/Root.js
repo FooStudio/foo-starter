@@ -4,7 +4,7 @@
 
 import React, {Component} from "react";
 import {connect} from "react-redux"
-import TransitionGroupPlus from "react-transition-group-plus"
+import TransitionGroupPlus from "foo/core/react/ReactTransitionGroupPlus"
 
 // import Pixi from "app/views/pixi/Main"
 
@@ -15,23 +15,21 @@ import Header from "app/components/Header"
 class Root extends Component {
     static displayName = "App";
 
-    init () {}
+    init() {}
 
-    onRender () {
+    onRender() {
         // this.renderer = PIXI.autoDetectRenderer( 800, 600, { backgroundColor: 0xcccccc } );
         // this.refs.pixi.appendChild( this.renderer.view );
         // this.stage = new Pixi();
     }
 
-    componentWillReceiveProps () {}
-
-    render () {
+    render() {
         return (
             <div className="App">
                 <Loader/>
                 <Header/>
                 <TransitionGroupPlus className="Router" component="div" transitionMode="simultaneous" deferLeavingComponentRemoval={false}>
-                    {React.cloneElement( this.props.children, { key: this.props.location.pathname } )}
+                    {React.cloneElement(this.props.children, {key: this.props.location.pathname})}
                 </TransitionGroupPlus>
                 <div ref="pixi"/>
             </div>
@@ -39,8 +37,8 @@ class Root extends Component {
     }
 }
 
-const mapStatetoProps = ( state ) => {
-    return { router: state.router, locale: state.app.locale }
+const mapStatetoProps = (state) => {
+    return {router: state.router, locale: state.app.locale}
 }
 
-export default connect( mapStatetoProps )( Root )
+export default connect(mapStatetoProps)(Root)
