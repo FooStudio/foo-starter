@@ -37,10 +37,14 @@ export default class Analytics {
      */
     _startTracking = ()=> {
         const state = App.store.getState();
-        const path  = state.routing.locationBeforeTransitions.pathname
-        if ( this.currentRoute !== path ) {
-            this.currentRoute = path
-            this.trackPage( this.currentRoute );
+        if (state.routing.locationBeforeTransitions) {
+          const path  = state.routing.locationBeforeTransitions.pathname
+          if ( this.currentRoute !== path ) {
+              this.currentRoute = path
+              this.trackPage( this.currentRoute );
+          }
+        } else {
+          console.error('No Routing Detected');
         }
     }
 
