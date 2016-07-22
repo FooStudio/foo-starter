@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars*/
+
 /**
  * Created by mendieta on 7/13/16.
  */

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 /**
  * Created by mendieta on 1/20/16.
  */
@@ -25,7 +27,6 @@ export default class AbstractApp {
      * @param {object} store App Redux store
      */
     constructor ( config, environment, data = {}, store ) {
-
         /**
          * The App store
          * @property store

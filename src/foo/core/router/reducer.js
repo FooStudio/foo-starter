@@ -9,11 +9,9 @@ const initialState = {}
 export default function update ( state = initialState, action ) {
     switch ( action.type ) {
         case ROUTED:
-            return action.location
-            break
+            return action.location;
         case ROUTE_NOT_FOUND:
-            return action.location
-            break
+            return action.location;
     }
     return state
 }

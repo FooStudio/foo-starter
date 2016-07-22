@@ -1,6 +1,5 @@
 import "styles/components/Loader"
-import React, {PropTypes, Component} from "react"
-import {render} from "react-dom"
+import React, {Component} from "react"
 import gsap from "react-gsap-enhancer"
 
 import {connect} from "react-redux"
@@ -14,7 +13,7 @@ class Loader extends Component {
     static displayName = "Loader";
     static propTypes   = {}
 
-    componentDidUpdate ( prevProps, prevState ) {
+    componentDidUpdate ( ) {
         if ( this.props.loading ) {
             this.addAnimation( loaderAppear );
         } else {

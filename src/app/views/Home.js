@@ -1,6 +1,5 @@
 import "styles/views/Home"
 import React, {PropTypes} from "react"
-import {render} from "react-dom"
 import {connect} from "react-redux"
 import ctg from "foo/core/redux/redux-transition"
 import {increase, decrease} from "app/actions/count"

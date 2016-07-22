@@ -130,7 +130,7 @@ export default class Router {
      */
     start () {
         page( "*", ( ctx, next )=> {
-            console.log("not found")
+            console.log("not found", next)
             App.store.dispatch( routed( ctx ) );
         } )
         page.start( this.options );

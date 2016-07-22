@@ -1,6 +1,5 @@
 import "styles/components/Header"
 import React, {Component} from "react"
-import {render} from "react-dom"
 import {Link} from "react-router"
 
 export default class Header extends Component {

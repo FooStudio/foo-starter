@@ -2,14 +2,14 @@
  * Created by mendieta on 1/1/16.
  */
 
-import React from "react";
-import {render} from "react-dom";
+import React from "react"
+import {render} from "react-dom"
 import {Provider} from "react-redux"
 import configureStore from "app/store"
 import {syncHistoryWithStore} from "react-router-redux"
 
 //REACT ROUTER
-import {Router, Route, browserHistory} from "react-router"
+import {Router, browserHistory} from "react-router"
 import routes from "app/Routes"
 
 import AbstractApp from "foo/core/AbstractApp"

@@ -7,5 +7,9 @@
     "test": {
         "title": "Prueba",
         "subtitle": "Esta es una prueba"
+    },
+    "notFound": {
+        "title": "404",
+        "subtitle": "No se encontró la página"
     }
 }

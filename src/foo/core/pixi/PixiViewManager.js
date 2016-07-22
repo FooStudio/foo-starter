@@ -94,7 +94,7 @@ export default class PixiViewManager {
      * @returns {boolean} If the view was successfully added
      */
     addView(view, route) {
-        if (this.views.get(route) != undefined) {
+        if (this.views.get(route) !== undefined) {
             console.error("PixiViewManger: A route can not be added twice - " + route);
             return false;
         }
@@ -116,7 +116,7 @@ export default class PixiViewManager {
             console.warn("PixiViewManager already at given route: " + route);
             return false;
         }
-        if (this.currentView != null) {
+        if (this.currentView !== null) {
             this.nextRoute = route;
             this._closeCurrentView();
             if (this.concurrent) {
@@ -135,7 +135,7 @@ export default class PixiViewManager {
      * @return {void}
      */
     _showView(route) {
-        let View = this.views.get(route);
+        const View = this.views.get(route);
         this.nextView = new View();
         this.currentRoute = route;
         this.nextView.opened.addOnce(this._onViewOpened, this);
@@ -160,7 +160,7 @@ export default class PixiViewManager {
      * @return {void}
      */
     _onViewClosed() {
-        let view = this.concurrent ? this.prevView : this.currentView;
+        const view = this.concurrent ? this.prevView : this.currentView;
         this.viewClosed.dispatch();
         this.container.removeChild(view);
         if (!this.concurrent) {

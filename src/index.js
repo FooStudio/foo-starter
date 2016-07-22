@@ -18,10 +18,10 @@ const startApp = ( data = null )=> {
         require('gsap').TweenMax;
 
         // Import the App
-        let App   = require( "app/App" ).default;
+        const App   = require( "app/App" ).default;
 
         // Create the app, third parameter is the data (if exists)
-        const app = new App( config, environment, data );
+        const app = new App( config, environment, data ); // eslint-disable-line no-unused-vars
     }, "app" );
 }
 
@@ -33,7 +33,9 @@ const loadData = ()=> {
     // Load assets / Start the App
     if ( config.data_loading ) {
         console.info( "Foo:", "Load App Data" );
-        Requester.getJSON( "static/data/data.json", ( error, data )=> { startApp( data.body ); } );
+        Requester.getJSON( "static/data/data.json", ( error, data )=> {
+            startApp( data.body );
+        } );
     } else {
         startApp();
     }

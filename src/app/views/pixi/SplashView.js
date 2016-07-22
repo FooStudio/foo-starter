@@ -3,7 +3,7 @@ import AbstractView from "foo/core/pixi/AbstractView"
 export default class SplashView extends AbstractView {
 
     init() {
-        let textSample = new PIXI.Text("Splash", {
+        const textSample = new PIXI.Text("Splash", {
             font: "35px Arial",
             fill: "white",
             align: "left"

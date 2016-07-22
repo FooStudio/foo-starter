@@ -5,7 +5,7 @@
 import {createStore} from "redux"
 import createReducer from "app/reducers"
 
-export default function configureStore ( initialState, history ) {
+export default function configureStore ( initialState ) {
     const store = createStore( createReducer(), window.devToolsExtension && window.devToolsExtension(), initialState )
 
     if ( module.hot ) {

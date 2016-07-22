@@ -2,8 +2,7 @@
  * Created by mendieta on 1/14/16.
  */
 
-import React, {PropTypes, Component} from "react";
-import {render} from "react-dom";
+import React, {Component} from "react";
 import {connect} from "react-redux"
 import TransitionGroupPlus from "react-transition-group-plus"
 
@@ -24,15 +23,14 @@ class Root extends Component {
         // this.stage = new Pixi();
     }
 
-    componentWillReceiveProps ( nextProps ) {}
+    componentWillReceiveProps () {}
 
     render () {
         return (
             <div className="App">
                 <Loader/>
                 <Header/>
-                <TransitionGroupPlus className="Router" component="div" transitionMode="simultaneous"
-                                     deferLeavingComponentRemoval={false}>
+                <TransitionGroupPlus className="Router" component="div" transitionMode="simultaneous" deferLeavingComponentRemoval={false}>
                     {React.cloneElement( this.props.children, { key: this.props.location.pathname } )}
                 </TransitionGroupPlus>
                 <div ref="pixi"/>
