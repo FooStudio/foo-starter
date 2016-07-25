@@ -2,14 +2,35 @@
 
 Mixins available:
 -   size                    - arguments: $width , $height
--   border-radius           - arguments: Radius: 5px
 -   border-radius-separate  - arguments: Top Left: 5px, Top Left: 5px, Bottom Left: 5px, Bottom Right: 5px
 -   outline radius          - arguments: Radius: 5px
+-   font-smoothing          - arguments:
+-   placeholder             - arguments:
+-   img-url                 - arguments:
+-   webfont                 - arguments:
 ------------------------------------------------------------- */
 
 size($width, $height = $width)
     width: $width
     height: $height
+
+absoluteCenter() {
+    display block
+    position absolute
+    left 50%
+    top 50%
+    transform (translate(-50%, -50%))
+}
+
+placeholder()
+    &::-webkit-input-placeholder
+        {block}
+    &:-moz-placeholder
+        {block}
+    &::-moz-placeholder
+        {block}
+    &:-ms-input-placeholder
+        {block}
 
 font-smoothing() {
     if current-property {
@@ -23,13 +44,6 @@ font-smoothing() {
     } else {
         error('font-smoothing() must be used within a property');
     }
-}
-
-/* BORDER RADIUS */
-border-radius($radiu = 5px) {
-    -moz-border-radius: $radius;
-    -webkit-border-radius: $radius;
-    border-radius: $radius;
 }
 
 border-radius-separate($topLeftRadius = 5px, $topRightRadius = 5px, $bottomLeftRadius = 5px, $bottomRightRadius = 5px) {
@@ -55,3 +69,25 @@ outline-radius($radius = 5px) {
     -moz-outline-radius: $radius;
     outline-radius: $radius;
 }
+
+img-url(file)
+    return url("~assets/img/" + file)
+
+font-url(file)
+    return 'assets/fonts/' + file
+
+webfont(family, file, hack-chrome-windows = false, weight = 'normal')
+    @font-face
+        font-family family
+        src url(font-url(file + '.eot'))
+        src url(font-url(file + '.eot?#iefix')) format('embedded-opentype')
+        src url(font-url(file + '.woff')) format('woff')
+        src url(font-url(file + '.ttf')) format('truetype')
+        src url(font-url(file + '.svg#' + family)) format('svg')
+        font-weight weight
+        font-style normal
+        if hack-chrome-windows
+            @media screen and (-webkit-min-device-pixel-ratio: 0)
+                @font-face
+                    font-family family
+                    src url(font-url(file + '.svg#' + family)) format('svg')
