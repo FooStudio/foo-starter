@@ -55,7 +55,7 @@ module.exports = {
             },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-                loader: 'url',
+                loader: 'file',
                 include: projectRoot,
                 query: {
                     limit: 1000,
@@ -64,7 +64,7 @@ module.exports = {
             },
             {
                 test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-                loader: 'url',
+                loader: 'file',
                 include: projectRoot,
                 query: {
                     limit: 1000,

@@ -58,7 +58,7 @@ export default class Analytics {
         if ( route ) {
             const v = this.tags[ param ]
             if ( v ) {
-                if ( App.DEBUG ) console.info( "Track Event:", v );
+                //if ( App.DEBUG ) console.info( "Track Event:", v );
                 switch ( this.adapter ) {
                     case Analytics.GOOGLE:
                         this._trackEventGoogle( v );
