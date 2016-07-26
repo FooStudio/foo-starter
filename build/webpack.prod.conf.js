@@ -5,9 +5,11 @@ var merge             = require( 'webpack-merge' );
 var baseWebpackConfig = require( './webpack.base.conf' );
 var ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 var HtmlWebpackPlugin = require( 'html-webpack-plugin' );
+var path              = require( 'path' );
+var projectRoot       = path.resolve( __dirname, '../' );
 
 module.exports = merge( baseWebpackConfig, {
-    module : {
+    module            : {
         loaders: [
             {
                 test  : /\.css/,
@@ -22,16 +24,37 @@ module.exports = merge( baseWebpackConfig, {
                     'style',
                     'css?importLoaders=2&-url!stylus'
                 )
-            }
+            },
+            {
+                test   : /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+                loaders: [ 'file?name=' + utils.assetsPath( 'img/[name].[ext]' ), 'image-webpack' ],
+                include: projectRoot
+            },
         ]
     },
-    devtool: config.build.productionSourceMap ? '#source-map' : false,
-    output : {
+    imageWebpackLoader: {
+        pngquant: {
+            quality: "65-90",
+            speed  : 4
+        },
+        svgo    : {
+            plugins: [
+                {
+                    removeViewBox: false
+                },
+                {
+                    removeEmptyAttrs: false
+                }
+            ]
+        }
+    },
+    devtool           : config.build.productionSourceMap ? '#source-map' : false,
+    output            : {
         path         : config.build.assetsRoot,
         filename     : utils.assetsPath( 'js/[name].js' ),
         chunkFilename: utils.assetsPath( 'js/[name].js' )
     },
-    plugins: [
+    plugins           : [
         new webpack.DefinePlugin( {
             "process.env": {
                 NODE_ENV: JSON.stringify( "production" )
