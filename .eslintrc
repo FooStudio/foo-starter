@@ -1,5 +1,6 @@
 {
     "parser": "babel-eslint",
+    "extends": "foo",
     "env": {
         "browser": true,
         "node": true
@@ -25,15 +26,5 @@
         "Back": true,
         "Elastic": true,
         "Linear": true
-    },
-    "extends": ["eslint:recommended", "plugin:react/recommended"],
-    "rules": {
-      "no-console": 0,
-      "max-len": 0,
-      comma-dangle: 0,
-      "arrow-body-style": 0,
-      "react/prefer-stateless-function": 0,
-      "react/jsx-boolean-value": 0,
-      "react/prop-types": 0,
     },
 }

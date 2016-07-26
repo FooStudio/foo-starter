@@ -20,14 +20,15 @@ export default class Analytics {
      * @param adapter
      * @param callback
      */
-    constructor ( tags, adapter = Analytics.GOOGLE, callback = null ) {
+    constructor(tags, adapter = Analytics.GOOGLE, callback = null) {
         this.adapter = adapter
-        Requester.getJSON( tags, ( error, data )=> {
-            this.tags    = data.body;
+        Requester.getJSON(tags, (error, data) => {
+            this.tags = data.body;
             this.started = true;
-            if ( callback != null ) callback()
-            App.store.subscribe( this._startTracking )
-        } )
+            if (callback != null)
+                callback()
+            App.store.subscribe(this._startTracking)
+        })
     }
 
     /**
@@ -35,16 +36,14 @@ export default class Analytics {
      * @private
      * @return {void
      */
-    _startTracking = ()=> {
+    _startTracking = () => {
         const state = App.store.getState();
-        if ( state.routing.locationBeforeTransitions ) {
+        if (state.routing.locationBeforeTransitions) {
             const path = state.routing.locationBeforeTransitions.pathname
-            if ( this.currentRoute !== path ) {
+            if (this.currentRoute !== path) {
                 this.currentRoute = path
-                this.trackPage( this.currentRoute );
+                this.trackPage(this.currentRoute);
             }
-        } else {
-            console.error( 'No Routing Detected' );
         }
     }
 
@@ -52,29 +51,30 @@ export default class Analytics {
      * Search for a match on the tracking data and pushes to analytics
      * @param {string} param Param of the tracking tag to be pushed on analytics
      */
-    trackEvent ( param ) {
-        if ( !this.started ) return;
-
-        if ( route ) {
-            const v = this.tags[ param ]
-            if ( v ) {
-                if ( App.DEBUG ) console.info( "Track Event:", v );
-                switch ( this.adapter ) {
+    trackEvent(param) {
+        if (!this.started)
+            return;
+        if (route) {
+            const v = this.tags[param]
+            if (v) {
+                if (App.DEBUG)
+                    console.info("Track Event:", v);
+                switch (this.adapter) {
                     case Analytics.GOOGLE:
-                        this._trackEventGoogle( v );
+                        this._trackEventGoogle(v);
                         break;
                     default:
-                        console.warn( "Analytics: ", "Adapter not defined or not found!" )
+                        console.warn("Analytics: ", "Adapter not defined or not found!")
                 }
             }
         }
     }
 
-    _trackEventGoogle ( v ) {
-        let args = [ "send", "event" ]
-        for ( let arg of v ) {
-            args.push( arg )
-            window.ga( ...args );
+    _trackEventGoogle(v) {
+        let args = ["send", "event"]
+        for (let arg of v) {
+            args.push(arg)
+            window.ga(...args);
         }
     }
 
@@ -82,23 +82,24 @@ export default class Analytics {
      * Tracks a page view, with the specified route
      * @param {string} route Route of the tracking tag to be pushed on analytics
      */
-    trackPage ( route ) {
-        if ( !this.started ) return;
-        if ( route ) {
-            if ( App.DEBUG ) console.info( "Track Page View:", route );
-            switch ( this.adapter ) {
+    trackPage(route) {
+        if (!this.started)
+            return;
+        if (route) {
+            if (App.DEBUG)
+                console.info("Track Page View:", route);
+            switch (this.adapter) {
                 case Analytics.GOOGLE:
-                    this._trackPageGoogle( route );
+                    this._trackPageGoogle(route);
                     break;
                 default:
-                    console.warn( "Analytics: ", "Adapter not defined or not found!" )
+                    console.warn("Analytics: ", "Adapter not defined or not found!")
             }
         }
     }
 
-    _trackPageGoogle ( route ) {
-        window.ga( "set", "page", route );
-        window.ga( "send", "pageview" );
+    _trackPageGoogle(route) {
+        window.ga("set", "page", route);
+        window.ga("send", "pageview");
     }
-
 }
