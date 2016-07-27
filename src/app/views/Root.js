@@ -4,7 +4,7 @@
 
 import React, {Component} from "react";
 import {connect} from "react-redux"
-import TransitionGroupPlus from "foo/core/react/ReactTransitionGroupPlus"
+import TransitionGroup from "react-transition-group-plus"
 
 // import Pixi from "app/views/pixi/Main"
 
@@ -28,9 +28,9 @@ class Root extends Component {
             <div className="App">
                 <Loader/>
                 <Header/>
-                <TransitionGroupPlus className="Router" component="div" transitionMode="simultaneous" deferLeavingComponentRemoval={false}>
+                <TransitionGroup className="Router" component="div" transitionMode="simultaneous" deferLeavingComponentRemoval={false}>
                     {React.cloneElement(this.props.children, {key: this.props.location.pathname})}
-                </TransitionGroupPlus>
+                </TransitionGroup>
                 <div ref="pixi"/>
             </div>
         )
