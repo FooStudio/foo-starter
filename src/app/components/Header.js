@@ -1,10 +1,15 @@
 import "styles/components/Header"
 import React, {Component} from "react"
 import {Link} from "react-router"
+import {loading} from 'app/actions/loader'
 
 export default class Header extends Component {
     changeLocale ( e ) {
         App.setLocale( e.currentTarget.getAttribute( "data-lang" ) );
+    }
+
+    summonLoader ( e ) {
+        App.store.dispatch( loading(true) );;
     }
 
     render () {
@@ -21,6 +26,9 @@ export default class Header extends Component {
                 </li>
                 <li>
                     <button onClick={this.changeLocale} data-lang="en-US">en</button>
+                </li>
+                <li>
+                    <button onClick={this.summonLoader}>loader</button>
                 </li>
             </ul>
         </div>)

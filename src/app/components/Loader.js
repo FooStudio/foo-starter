@@ -5,7 +5,8 @@ import gsap from "react-gsap-enhancer"
 import {connect} from "react-redux"
 import ctg from "foo/core/redux/redux-transition"
 
-import {loaderAppear, loaderDisapper} from "app/animations/loader"
+import {loaderAppear, loaderDisappear} from "app/animations/loader"
+import {loading} from 'app/actions/loader'
 
 @gsap()
 class Loader extends Component {
@@ -13,19 +14,28 @@ class Loader extends Component {
     static displayName = "Loader";
     static propTypes   = {}
 
-    componentDidUpdate ( ) {
-        if ( this.props.loading ) {
-            this.addAnimation( loaderAppear );
+    componentWillReceiveProps (nextProps) {
+        const {loading} = nextProps;
+        if (loading) {
+            this.addAnimation(loaderAppear);
         } else {
-            this.addAnimation( loaderDisapper );
+            this.addAnimation(loaderDisappear);
         }
     }
 
+    unsummonLoader ( e ) {
+        App.store.dispatch( loading(false) );;
+    }
+
     render () {
-        return (<div className="Loader">
-            <h5>LOADING</h5>
-            <p>progress ---: {this.props.progress}</p>
-        </div>)
+        const {progress} = this.props;
+        return (
+            <div className="internal-loader">
+                <h5>Internal Loading</h5>
+                <p>Progress: {progress}</p>
+                <button onClick={this.unsummonLoader}>loader</button>
+            </div>
+        );
     }
 }
 

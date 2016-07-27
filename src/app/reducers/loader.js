@@ -6,10 +6,8 @@ const initialState = {
 }
 
 export default function update ( state = initialState, action ) {
-    if ( action.type === LOADED ) {
-        return { ...state, loading: false }
-    } else if ( action.type === LOADING ) {
-        return { ...state, loading: true, progress: 0 }
+    if ( action.type === LOADING ) {
+        return { ...state, loading: action.loading }
     } else if ( action.type === PROGRESS ) {
         return { ...state, progress: action.progress }
     }

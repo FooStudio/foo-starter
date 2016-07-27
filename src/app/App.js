@@ -12,6 +12,7 @@ import {syncHistoryWithStore} from "react-router-redux"
 import {Router, browserHistory} from "react-router"
 import routes from "app/Routes"
 
+
 import AbstractApp from "foo/core/AbstractApp"
 
 export default class App extends AbstractApp {
@@ -25,12 +26,6 @@ export default class App extends AbstractApp {
     init () {
         this.history = syncHistoryWithStore( browserHistory, this.store )
         super.init();
-    }
-
-    // Asset loading method only if "asset_loading" in config is set to true.
-    loadAssets () {
-        //CALL START METHOD AFTER LOADING ASSETS
-        this.start();
     }
 
     // Called just before the render method.

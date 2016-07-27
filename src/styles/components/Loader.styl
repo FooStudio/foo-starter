@@ -2,13 +2,23 @@
 
 @import "~styles/vars";
 
-.Loader
+.loader
     display block
     size 100%
     position fixed
-    z-index 90000
+
+.internal-loader
+    @extend .loader
     background-color $black
-    visibility: hidden
-    opacity 0
-    color $white
     text-align center
+    color: $white
+    visibility: hidden
+    opacity: 0
+    z-index 1000
+
+#main-loader
+    @extend .loader
+    background-color $primary
+    text-align center
+    color: $white
+    z-index 1001

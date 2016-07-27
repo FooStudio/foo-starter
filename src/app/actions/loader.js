@@ -4,8 +4,8 @@
 
 import {LOADED, LOADING, PROGRESS} from "app/constants/loader"
 
-export function loading () {
-    return { type: LOADING }
+export function loading (loading) {
+    return { type: LOADING, loading: loading }
 }
 
 export function loaded () {

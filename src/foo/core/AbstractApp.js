@@ -11,6 +11,9 @@ import Requester from "foo/net/Requester"
 import Analytics from "foo/utils/Analytics"
 import Dispatcher from "app/Dispatcher"
 import {locale_changed, locale_loading, resize, started} from "foo/core/redux/actions"
+import {progress} from 'app/actions/loader'
+import {mainLoaderDisappear} from "app/animations/loader"
+import preloader from 'preloader'
 
 export default class AbstractApp {
 
@@ -82,6 +85,17 @@ export default class AbstractApp {
          * @type {string}
          */
         this.locale = "es-MX";
+        /**
+         * Loader
+         * @default {}
+         * @property data
+         * @type {Object}
+         */
+        this.loader = preloader({
+            xhrImages: false,
+            loadFullAudio: true,
+            loadFullVideo: true
+        });
         window.App = this;
         this._setupAnalytics();
     }
@@ -95,7 +109,13 @@ export default class AbstractApp {
         if ( this.DEBUG ) this.startDebug();
         this._addListeners();
         this._initSDKs();
-        (this.config.asset_loading) ? this.loadAssets() : this.start();
+        if (this.config.asset_loading) {
+            this.loader.on('progress', this.loaderProgress);
+            this.loader.on('complete', this.loaderComplete);
+            this.loadAssets();
+        } else {
+            this.start();
+        }
     }
 
     /**
@@ -228,7 +248,10 @@ export default class AbstractApp {
      * @return {void
      */
     loadAssets () {
-
+        this.data.global.map((item, i) => {
+            this.loader.add('/static/' + item);
+        })
+        this.loader.load();
     }
 
     /**
@@ -239,7 +262,28 @@ export default class AbstractApp {
     start () {
         this.started = true;
         App.store.dispatch( started() );
+        mainLoaderDisappear();
         this.renderApp();
+    }
+
+    /**
+     * Loader Progress
+     * @override
+     * @returns {void}
+     */
+    loaderProgress = (prog) => {
+        App.store.dispatch( progress(prog) );
+    }
+
+
+    /**
+     * Loader Complete
+     * @override
+     * @returns {void}
+     */
+    loaderComplete = () =>{
+        console.info('Content Loaded');
+        this.start();
     }
 
     /**

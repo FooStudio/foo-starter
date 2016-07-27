@@ -1,5 +1,9 @@
 {
-    "test": {
-
-    }
+    "global": [
+        "data/data.json",
+        "data/tracking.json",
+        "img/logo.gif"
+    ],
+    "home": [],
+    "test": []
 }
