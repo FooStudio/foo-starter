@@ -51,14 +51,15 @@ export default class Analytics {
      * Search for a match on the tracking data and pushes to analytics
      * @param {string} param Param of the tracking tag to be pushed on analytics
      */
-    trackEvent ( param ) {
-        if ( !this.started ) return;
-
-        if ( route ) {
-            const v = this.tags[ param ]
-            if ( v ) {
-                //if ( App.DEBUG ) console.info( "Track Event:", v );
-                switch ( this.adapter ) {
+    trackEvent(param) {
+        if (!this.started)
+            return;
+        if (route) {
+            const v = this.tags[param]
+            if (v) {
+                if (App.DEBUG)
+                    console.info("Track Event:", v);
+                switch (this.adapter) {
                     case Analytics.GOOGLE:
                         this._trackEventGoogle(v);
                         break;
@@ -81,11 +82,13 @@ export default class Analytics {
      * Tracks a page view, with the specified route
      * @param {string} route Route of the tracking tag to be pushed on analytics
      */
-    trackPage ( route ) {
-        if ( !this.started ) return;
-        if ( route ) {
-            if ( App.DEBUG ) console.info( "Track Page View:", route );
-            switch ( this.adapter ) {
+    trackPage(route) {
+        if (!this.started)
+            return;
+        if (route) {
+            if (App.DEBUG)
+                console.info("Track Page View:", route);
+            switch (this.adapter) {
                 case Analytics.GOOGLE:
                     this._trackPageGoogle(route);
                     break;
