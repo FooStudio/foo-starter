@@ -5,6 +5,7 @@ import Root from "app/views/Root"
 import Home from "app/views/Home"
 import Test from "app/views/Test"
 import NotFound from "app/views/NotFound"
+import {loading} from "app/actions/loader"
 
 const routes = {
     path       : "/",
@@ -12,12 +13,16 @@ const routes = {
     indexRoute : { component: Home, onEnter: enterHandler },
     childRoutes: [
         { path: "test", component: Test },
-        { path: "*", component: NotFound }
+        { path: "*", component: NotFound , onEnter: enterHandler}
     ]
 }
 
 function enterHandler ( nextState, replace, callback ) {
-    callback();
+    App.store.dispatch( loading( true ) );
+    TweenMax.delayedCall( 1, ()=> {
+        App.store.dispatch( loading( false ) );
+        callback();
+    } )
 }
 
 export default routes;

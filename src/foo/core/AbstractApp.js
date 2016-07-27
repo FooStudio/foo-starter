@@ -55,7 +55,7 @@ export default class AbstractApp {
          * The app analytics util
          * @property analytics
          * @type {Analytics}
-         */
+         *
         this.analytics = null;
 
         /**
