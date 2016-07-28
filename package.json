@@ -73,6 +73,7 @@
     "image-webpack-loader": "^2.0.0",
     "json-loader": "^0.5.4",
     "lost": "^6.8.1",
+    "object-assign": "^4.1.0",
     "ora": "^0.2.3",
     "poststylus": "^0.2.3",
     "raw-loader": "^0.5.1",
