@@ -32,18 +32,10 @@ export default class AuthManager {
     }
 
     static register ( data ) {
-        if ( getLoggedIn( store.state ) ) {
-            console.warn( "AuthManager:", "User already loggedin" );
-            return
-        }
         Api.register( data );
     }
 
     static logout () {
-        if ( !getLoggedIn( store.state ) ) {
-            console.warn( "AuthManager:", "User not loggedin" );
-            return
-        }
         switch ( this.service ) {
             case "facebook":
                 Facebook.logout();
