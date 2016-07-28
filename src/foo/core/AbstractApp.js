@@ -4,8 +4,6 @@
  * Created by mendieta on 1/20/16.
  */
 
-import React from "react"
-import {render} from "react-dom"
 import Polyglot from "node-polyglot"
 import Requester from "foo/net/Requester"
 import Analytics from "foo/utils/Analytics"

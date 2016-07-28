@@ -24,7 +24,8 @@ export default class App extends AbstractApp {
 
     // Called just after inital data is loaded (locale/sdks/etc).
     init () {
-        const appHistory = useRouterHistory( createHashHistory )( { query: false } )
+        const appHistory = useRouterHistory( createHashHistory )( { queryKey: false, hashType: 'hashbang'} )
+        console.log(appHistory)
         this.history     = syncHistoryWithStore( appHistory, this.store )
         super.init();
     }
