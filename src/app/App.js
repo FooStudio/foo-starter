@@ -13,7 +13,7 @@ import {Router, useRouterHistory} from "react-router"
 import {createHashHistory} from "history"
 import routes from "app/Routes"
 
-import AbstractApp from "foo/core/AbstractApp"
+import AbstractApp from "foo/core/react/ReactAbstractApp"
 
 export default class App extends AbstractApp {
 
